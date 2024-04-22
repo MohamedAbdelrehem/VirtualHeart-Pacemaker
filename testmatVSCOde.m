@@ -60,6 +60,10 @@ for i = 1:length(files)
                             % Check if cell_value contains a comma
                             elseif ischar(cell_value) && contains(cell_value, ',')
                                 fprintf(fid, '"%s",', cell_value); % Write the string enclosed in double quotes
+
+                            % check if data is True and false and save it as 1 and 0
+                            elseif islogical(cell_value)
+                                fprintf(fid, '"%d",', cell_value); % Write the logical value as 1 or 0
                             else
                                 % Format based on data type
                                 if isnumeric(cell_value)
