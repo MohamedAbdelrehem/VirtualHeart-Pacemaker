@@ -53,23 +53,22 @@ for i = 1:length(files)
                         for col = 1:size(variable_data, 2)
                             cell_value = variable_data{row, col};
                             
+                           
+                            % check if there is array in the cell and save it as a string with commas separating the elements and enclosed in brackets
+                            if isnumeric(cell_value) && numel(cell_value) > 1
+                                fprintf(fid, '"[%s]",', strjoin(cellstr(num2str(cell_value(:))), ',')); % Write the array enclosed in brackets
                             % Check if cell_value contains a comma
-                            if ischar(cell_value) && contains(cell_value, ',')
+                            elseif ischar(cell_value) && contains(cell_value, ',')
                                 fprintf(fid, '"%s",', cell_value); % Write the string enclosed in double quotes
-                            % check if there is array in the cell and save it as a string with comma
-                            elseif isnumeric(cell_value)
-                                if length(cell_value) > 1
-                                    fprintf(fid, '%s,', mat2str(cell_value));
-                                end
                             else
                                 % Format based on data type
                                 if isnumeric(cell_value)
-                                    fprintf(fid, '%f,', cell_value);
+                                    fprintf(fid, '"%f",', cell_value);
                                 elseif ischar(cell_value)
-                                    fprintf(fid, '%s,', cell_value);
+                                    fprintf(fid, '"%s",', cell_value);
                                 else
                                     % Handle other data types as needed
-                                    fprintf(fid, '?,'); % Placeholder for unsupported types
+                                    fprintf(fid, '"?",'); % Placeholder for unsupported types
                                 end
                             end
                         end
@@ -85,5 +84,6 @@ for i = 1:length(files)
             end
     end
 end
+
 
 
