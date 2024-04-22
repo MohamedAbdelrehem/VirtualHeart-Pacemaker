@@ -53,14 +53,19 @@ for i = 1:length(files)
                     for col = 1:size(variable_data, 2)
                         cell_value = variable_data{row, col};
                         
-                        % Format based on data type
-                        if isnumeric(cell_value)
-                            fprintf(fid, '%f,', cell_value);
-                        elseif ischar(cell_value)
-                            fprintf(fid, '%s,', cell_value);
+                        % Check if cell_value is an array
+                        if isnumeric(cell_value) && numel(cell_value) > 1
+                            fprintf(fid, '%s,', num2str(cell_value)); % Write the array as a single string
                         else
-                            % Handle other data types as needed
-                            fprintf(fid, '?,'); % Placeholder for unsupported types
+                            % Format based on data type
+                            if isnumeric(cell_value)
+                                fprintf(fid, '%f,', cell_value);
+                            elseif ischar(cell_value)
+                                fprintf(fid, '%s,', cell_value);
+                            else
+                                % Handle other data types as needed
+                                fprintf(fid, '?,'); % Placeholder for unsupported types
+                            end
                         end
                     end
                     fprintf(fid, '\n'); % Newline after each row
@@ -75,3 +80,4 @@ for i = 1:length(files)
         end
     end
 end
+
