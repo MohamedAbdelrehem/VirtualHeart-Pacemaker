@@ -25,35 +25,22 @@ typedef struct Node
 // array of node_def
 node_def node_table[100];
 
-int readMatlabCSV(const char *filename);
-void save_to_node_table(char *token, int columnNo, int rowNo);
+int readMatlabCSV(const char *filename, int *const numberofnodes);
+void save_to_node_table(char *token, const int columnNo, const int rowNo);
+void printNodeTable(const int *const numberofnodes);
 
 int main()
 {
-    readMatlabCSV("D:/github/VirtualHeart&Pacemaker/cases/EP_AVNRT/node_table.csv");
-    // print node_table to check
+    int numberofnodes = 0;
 
-    for (int i = 0; i < 30; i++)
-    {
-        printf("node_name: %s\n", node_table[i].node_name);
-        printf("node_state_index: %d\n", node_table[i].node_state_index);
-        printf("TERP_current: %d\n", node_table[i].TERP_current);
-        printf("TERP_default: %d\n", node_table[i].TERP_default);
-        printf("TRRP_current: %d\n", node_table[i].TRRP_current);
-        printf("TRRP_default: %d\n", node_table[i].TRRP_default);
-        printf("TREST_current: %d\n", node_table[i].TREST_current);
-        printf("TREST_default: %d\n", node_table[i].TREST_default);
-        printf("activation: %d\n", node_table[i].activation);
-        printf("TERP_bounds: %d %d\n", node_table[i].TERP_bounds[0], node_table[i].TERP_bounds[1]);
-        printf("index_of_path_activate_the_node: %d\n", node_table[i].index_of_path_activate_the_node);
-        printf("AV_node: %d\n", node_table[i].AV_node);
-        printf("\n");
-    }
+    readMatlabCSV("D:/github/VirtualHeart&Pacemaker/cases/EP_AVNRT/node_table.csv", &numberofnodes);
+    // print node_table to check
+    printNodeTable(&numberofnodes);
 
     return 0;
 }
 
-int readMatlabCSV(const char *filename)
+int readMatlabCSV(const char *filename, int *numberofnodes)
 {
 
     FILE *file;
@@ -94,7 +81,7 @@ int readMatlabCSV(const char *filename)
         rowNo++;
         // printf("\n");
     }
-
+    *numberofnodes = rowNo;
     // Close the file
     fclose(file);
 }
@@ -144,5 +131,24 @@ void save_to_node_table(char *token, int columnNo, int rowNo)
         break;
     default:
         break;
+    }
+}
+
+void printNodeTable(const int *const numberofnodes)
+{
+    for (int i = 0; i < *numberofnodes; i++)
+    {
+        printf("node_name: %s\n", node_table[i].node_name);
+        printf("node_state_index: %d\n", node_table[i].node_state_index);
+        printf("TERP_current: %d\n", node_table[i].TERP_current);
+        printf("TERP_default: %d\n", node_table[i].TERP_default);
+        printf("TRRP_current: %d\n", node_table[i].TRRP_current);
+        printf("TRRP_default: %d\n", node_table[i].TRRP_default);
+        printf("TREST_current: %d\n", node_table[i].TREST_current);
+        printf("TREST_default: %d\n", node_table[i].TREST_default);
+        printf("activation: %d\n", node_table[i].activation);
+        printf("TERP_bounds: [%d, %d]\n", node_table[i].TERP_bounds[0], node_table[i].TERP_bounds[1]);
+        printf("index_of_path_activate_the_node: %d\n", node_table[i].index_of_path_activate_the_node);
+        printf("AV_node: %d\n", node_table[i].AV_node);
     }
 }
