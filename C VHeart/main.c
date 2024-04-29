@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "matlabRead.h"
 #include "nodeTable.h"
+
 int main()
 {
     int numberofnodes = 0;

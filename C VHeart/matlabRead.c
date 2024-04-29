@@ -4,6 +4,7 @@
 #include <string.h>
 #include "matlabRead.h"
 #include "nodeTable.h"
+
 int readMatlabCSV(const char *filename, int *numberofnodes)
 {
 

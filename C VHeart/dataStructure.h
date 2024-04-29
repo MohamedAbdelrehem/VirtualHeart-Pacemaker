@@ -1,4 +1,5 @@
-
+#ifndef DATASTRUCTURE_H
+#define DATASTRUCTURE_H
 typedef struct Node
 {
     char node_name[10];
@@ -18,3 +19,5 @@ typedef struct Node
 
 // array of node_def
 node_def node_table[100];
+
+#endif // DATASTRUCTURE_H
