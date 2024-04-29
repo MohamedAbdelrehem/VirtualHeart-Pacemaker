@@ -1,92 +1,11 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LINE_LENGTH 1024
+#include "./dataStructure.h"
+#include "./nodeTable.h"
 
-typedef struct Node
-{
-    char node_name[10];
-    int node_state_index;
-    int TERP_current;  // suggestion using unsigned short
-    int TERP_default;  // unsigned short
-    int TRRP_current;  // unsigned short
-    int TRRP_default;  // unsigned short
-    int TREST_current; // unsigned short
-    int TREST_default; // unsigned short
-    int activation;
-    int TERP_bounds[2];                  // unsigned short
-    int index_of_path_activate_the_node; // unsigned short
-    int AV_node;                         // suggestion using enum with two values
-
-} node_def;
-
-// array of node_def
-node_def node_table[100];
-
-int readMatlabCSV(const char *filename, int *const numberofnodes);
-void save_to_node_table(char *token, const int columnNo, const int rowNo);
-void printNodeTable(const int *const numberofnodes);
-
-int main()
-{
-    int numberofnodes = 0;
-
-    readMatlabCSV("D:/github/VirtualHeart&Pacemaker/cases/EP_AVNRT/node_table.csv", &numberofnodes);
-    // print node_table to check
-    printNodeTable(&numberofnodes);
-
-    return 0;
-}
-
-int readMatlabCSV(const char *filename, int *numberofnodes)
-{
-
-    FILE *file;
-    char line[MAX_LINE_LENGTH];
-    char *token;
-
-    // Open the CSV file
-    file = fopen(filename, "r");
-    if (file == NULL)
-    {
-        perror("Error opening file");
-        return 1;
-    }
-    int rowNo = 0;
-
-    // Read each line of the file
-    while (fgets(line, sizeof(line), file))
-    {
-        int columnNo = 0;
-        // Extract tokens between quotes
-        token = strtok(line, "\"");
-        while (token != NULL)
-        {
-            if (token[0] == ',')
-            {
-                token = strtok(NULL, "\"");
-                continue;
-            }
-            // Print the token
-            // printf("%s  ", token);
-            // Copy the token to the node_table
-            // use switch case with columnNo to copy the token to the node_table
-            save_to_node_table(token, columnNo, rowNo);
-            // Get the next token
-            token = strtok(NULL, "\"");
-            columnNo++;
-        }
-        rowNo++;
-        // printf("\n");
-    }
-    *numberofnodes = rowNo;
-    // Close the file
-    fclose(file);
-}
-
-void save_to_node_table(char *token, int columnNo, int rowNo)
+void saveToNodeStruct(char *token, const int columnNo, const int rowNo)
 {
     // printf("rowNo: %d, columnNo: %d, token: %s\n", rowNo, columnNo, token);
     switch (columnNo)
@@ -150,5 +69,6 @@ void printNodeTable(const int *const numberofnodes)
         printf("TERP_bounds: [%d, %d]\n", node_table[i].TERP_bounds[0], node_table[i].TERP_bounds[1]);
         printf("index_of_path_activate_the_node: %d\n", node_table[i].index_of_path_activate_the_node);
         printf("AV_node: %d\n", node_table[i].AV_node);
+        printf("\n");
     }
 }
