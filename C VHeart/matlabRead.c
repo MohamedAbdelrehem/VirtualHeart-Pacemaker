@@ -36,8 +36,8 @@ int readMatlabCSV(const char *filename, int *numberofnodes)
             }
             // Print the token
             // printf("%s  ", token);
-            // Copy the token to the node_table
-            // use switch case with columnNo to copy the token to the node_table
+            // Copy the token to the nodeTable
+            // use switch case with columnNo to copy the token to the nodeTable
             saveToNodeStruct(token, columnNo, rowNo);
             // Get the next token
             token = strtok(NULL, "\"");

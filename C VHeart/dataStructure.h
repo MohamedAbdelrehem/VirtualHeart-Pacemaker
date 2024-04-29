@@ -16,8 +16,24 @@ typedef struct Node
     int AV_node;                         // suggestion using enum with two values
 
 } node_def;
-
+typedef struct Path
+{ // same suggestion as above mostly all of the int can be unsigned char and path_state_index can be enum
+    char path_name[10];
+    int path_state_index;
+    int entry_node_index;
+    int exit_node_index;
+    int amplitude_factor;
+    float forward_speed;
+    float backward_speed;
+    int forward_timer_current; //
+    int forward_timer_default;
+    int backward_timer_current;
+    int backward_timer_default;
+    float path_length;
+    float path_slope;
+} node_path;
 // array of node_def
-node_def node_table[100];
+node_def nodeTable[100];
+node_path nodePathtable[100];
 
 #endif // DATASTRUCTURE_H
