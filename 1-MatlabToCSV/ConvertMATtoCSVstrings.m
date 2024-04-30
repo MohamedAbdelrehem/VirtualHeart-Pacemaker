@@ -1,22 +1,22 @@
 % Define the folder path
-folder_path = 'D:\github\VirtualHeart&Pacemaker\cases'; 
-
+folderPath = 'D:\github\VirtualHeart&Pacemaker\1-MatlabToCSV\cases'; 
+SaveCSVPath = 'D:\github\VirtualHeart&Pacemaker\2-MatlabToCSVOutput';
 % Get all .mat files in the folder
-files = dir(fullfile(folder_path, '*.mat'));
+files = dir(fullfile(folderPath, '*.mat'));
 
 for i = 1:length(files)
     % Get the filename
     filename = files(i).name;
     
-    % Create folder named after the .mat file (without extension)
+    % Create folder named for each .mat file (without extension)
     folder_name = filename(1:end-4); % Extract name without .mat extension
-    folder_fullpath = fullfile(folder_path, folder_name);
+    folder_fullpath = fullfile(SaveCSVPath, folder_name);
     if ~exist(folder_fullpath, 'dir')
       mkdir(folder_fullpath);
     end
     
     % Load the .mat file
-    data = load(fullfile(folder_path, filename));
+    data = load(fullfile(folderPath, filename));
     
     % Get variable names
     variable_names = fieldnames(data);
@@ -27,11 +27,8 @@ for i = 1:length(files)
         variable_data = data.(variable_name);
 
                % Handle arrays within fields and cell arrays
-               if isstruct(variable_data)
-                % (Handle structs as needed - code not shown here)
-                % You might want to recursively process nested structs
-                % and export their fields to separate CSV files or within 
-                % the same file using appropriate formatting. 
+            if isstruct(variable_data)
+               %%skip if already structed
             elseif iscell(variable_data)
                 % Check if all cell elements are numeric or strings
                 numericCheck = cellfun(@isnumeric, variable_data);
@@ -39,11 +36,11 @@ for i = 1:length(files)
     
                 if all(numericCheck(:)) || all(stringCheck(:)) 
                     variable_data = cell2mat(variable_data); % Convert to matrix
-                    csv_filename = fullfile(folder_path, folder_name, [variable_name '.csv']);
+                    csv_filename = fullfile(SaveCSVPath, folder_name, [variable_name '.csv']);
                     writetable(variable_data, csv_filename);
                 else
                     % Handle complex cell arrays (mixed data types)
-                    csv_filename = fullfile(folder_path, folder_name, [variable_name '.csv']);
+                    csv_filename = fullfile(SaveCSVPath, folder_name, [variable_name '.csv']);
                     
                     % Open file for writing
                     fid = fopen(csv_filename, 'w');
@@ -83,11 +80,12 @@ for i = 1:length(files)
                 end
             else
                 % Handle other data types as needed (e.g., numeric arrays)
-                csv_filename = fullfile(folder_path, folder_name, [variable_name '.csv']);
+                csv_filename = fullfile(SaveCSVPath, folder_name, [variable_name '.csv']);
                 writematrix(variable_data, csv_filename); 
             end
     end
 end
+
 
 
 
