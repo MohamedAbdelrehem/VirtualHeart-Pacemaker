@@ -5,6 +5,8 @@
 #include "./dataStructure.h"
 #include "./nodeTable.h"
 
+node_def nodeTable[100];
+
 void saveToNodeStruct(char *token, const int columnNo, const int rowNo)
 {
     // printf("rowNo: %d, columnNo: %d, token: %s\n", rowNo, columnNo, token);

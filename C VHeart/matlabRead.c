@@ -5,7 +5,15 @@
 #include "matlabRead.h"
 #include "nodeTable.h"
 
-int readMatlabCSV(const char *filename, int *numberofnodes)
+/**
+ * Reads a CSV file in that exported from my MATLAB code.
+ *
+ * @param fileName The name of the CSV file to read.
+ * @param numberOfRows Pointer to store in it's pointee the number of nodes in the CSV file.
+ * @param saveToStructFPointer function pointer used to save the data to the any struct.
+ * @return A matrix containing the data from the CSV file.
+ */
+int readMatlabCSV(const char *fileName, int *const numberOfRows, void (*saveToStructFPointer)(char *, const int, const int))
 {
 
     FILE *file;
@@ -13,7 +21,7 @@ int readMatlabCSV(const char *filename, int *numberofnodes)
     char *token;
 
     // Open the CSV file
-    file = fopen(filename, "r");
+    file = fopen(fileName, "r");
     if (file == NULL)
     {
         perror("Error opening file");
@@ -38,7 +46,7 @@ int readMatlabCSV(const char *filename, int *numberofnodes)
             // printf("%s  ", token);
             // Copy the token to the nodeTable
             // use switch case with columnNo to copy the token to the nodeTable
-            saveToNodeStruct(token, columnNo, rowNo);
+            saveToStructFPointer(token, columnNo, rowNo);
             // Get the next token
             token = strtok(NULL, "\"");
             columnNo++;
@@ -46,7 +54,7 @@ int readMatlabCSV(const char *filename, int *numberofnodes)
         rowNo++;
         // printf("\n");
     }
-    *numberofnodes = rowNo;
+    *numberOfRows = rowNo;
     // Close the file
     fclose(file);
 }

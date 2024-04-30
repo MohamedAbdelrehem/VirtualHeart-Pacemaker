@@ -3,6 +3,6 @@
 
 #define MAX_LINE_LENGTH 1024
 
-int readMatlabCSV(const char *filename, int *const numberofnodes);
+int readMatlabCSV(const char *fileName, int *const numberOfRows, void (*saveToStructFPointer)(char *, const int, const int));
 
 #endif // MATLABREAD_H_

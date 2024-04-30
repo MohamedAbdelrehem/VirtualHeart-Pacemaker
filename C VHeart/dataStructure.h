@@ -33,7 +33,5 @@ typedef struct Path
     float path_slope;
 } node_path;
 // array of node_def
-node_def nodeTable[100];
-node_path nodePathtable[100];
 
 #endif // DATASTRUCTURE_H
