@@ -75,5 +75,5 @@ void printNodePathTable(const int *const numberofnodes)
         printf("path_length: %f\n", nodePathtable[i].path_length);
         printf("path_slope: %f\n", nodePathtable[i].path_slope);
         printf("\n");
-    }
+        }
 }

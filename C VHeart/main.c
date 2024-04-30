@@ -34,4 +34,11 @@ void main()
     //? print nodeTable to check
     //?printNodePathTable(&numberofnodesPathes);
     //**--------------------------------------------------------------------------------**//
+
+    while (1)
+    {
+        /* code */
+    }
 }
+
+// This is a simple typing club like CLI-program which is written in C using the ncurses library and it's under development right now.
