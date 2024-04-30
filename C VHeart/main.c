@@ -7,6 +7,7 @@
 #include "nodeTable.h"
 #include "nodePath.h"
 #include "dataStructure.h"
+
 //^ @MohamedAbdelrehem to @ahhassan88 : I have added the following variables as extern to be able to use them in the main file globally
 extern node_def nodeTable[100];
 extern node_path nodePathtable[100];
