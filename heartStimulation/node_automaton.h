@@ -104,7 +104,7 @@
 node_def temp;
     temp = (*node);
     temp.activation = temp_act;
-
+// in the code he did activate the original node_Table want to make sure of that
     return temp;
     }
 
