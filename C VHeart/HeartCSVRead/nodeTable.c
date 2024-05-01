@@ -57,20 +57,24 @@ void saveToNodeStruct(char *token, const int columnNo, const int rowNo)
 
 void printNodeTable(const int *const numberofnodes)
 {
+
+    printf("Table of nodes:\n\n");
     for (int i = 0; i < *numberofnodes; i++)
     {
-        printf("node_name: %s\n", nodeTable[i].node_name);
-        printf("node_state_index: %d\n", nodeTable[i].node_state_index);
-        printf("TERP_current: %d\n", nodeTable[i].TERP_current);
-        printf("TERP_default: %d\n", nodeTable[i].TERP_default);
-        printf("TRRP_current: %d\n", nodeTable[i].TRRP_current);
-        printf("TRRP_default: %d\n", nodeTable[i].TRRP_default);
-        printf("TREST_current: %d\n", nodeTable[i].TREST_current);
-        printf("TREST_default: %d\n", nodeTable[i].TREST_default);
-        printf("activation: %d\n", nodeTable[i].activation);
-        printf("TERP_bounds: [%d, %d]\n", nodeTable[i].TERP_bounds[0], nodeTable[i].TERP_bounds[1]);
-        printf("index_of_path_activate_the_node: %d\n", nodeTable[i].index_of_path_activate_the_node);
-        printf("AV_node: %d\n", nodeTable[i].AV_node);
+        printf("node_name: %-15s\t", nodeTable[i].node_name);
+        printf("node_state_index: %d\t", nodeTable[i].node_state_index);
+        printf("TERP_current: %d\t", nodeTable[i].TERP_current);
+        printf("TERP_default: %d\t", nodeTable[i].TERP_default);
+        printf("TRRP_current: %d\t", nodeTable[i].TRRP_current);
+        printf("TRRP_default: %d\t", nodeTable[i].TRRP_default);
+        printf("TREST_current: %d\t", nodeTable[i].TREST_current);
+        printf("TREST_default: %d\t", nodeTable[i].TREST_default);
+        printf("activation: %d\t", nodeTable[i].activation);
+        printf("TERP_bounds: [%d, %d]\t\t", nodeTable[i].TERP_bounds[0], nodeTable[i].TERP_bounds[1]);
+        printf("index_of_path_activate_the_node: %d\t", nodeTable[i].index_of_path_activate_the_node);
+        printf("AV_node: %d\t", nodeTable[i].AV_node);
         printf("\n");
     }
+    printf("\n");
+    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n\n");
 }

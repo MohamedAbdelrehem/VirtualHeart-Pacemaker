@@ -59,21 +59,24 @@ void saveToNodePathStruct(char *token, const int columnNo, const int rowNo)
 // print nodepath struct
 void printNodePathTable(const int *const numberofnodes)
 {
+    printf("Table of nodes Path:\n\n");
     for (int i = 0; i < *numberofnodes; i++)
     {
-        printf("path_name: %s\n", nodePathtable[i].path_name);
-        printf("path_state_index: %d\n", nodePathtable[i].path_state_index);
-        printf("entry_node_index: %d\n", nodePathtable[i].entry_node_index);
-        printf("exit_node_index: %d\n", nodePathtable[i].exit_node_index);
-        printf("amplitude_factor: %d\n", nodePathtable[i].amplitude_factor);
-        printf("forward_speed: %f\n", nodePathtable[i].forward_speed);
-        printf("backward_speed: %f\n", nodePathtable[i].backward_speed);
-        printf("forward_timer_current: %d\n", nodePathtable[i].forward_timer_current);
-        printf("forward_timer_default: %d\n", nodePathtable[i].forward_timer_default);
-        printf("backward_timer_current: %d\n", nodePathtable[i].backward_timer_current);
-        printf("backward_timer_default: %d\n", nodePathtable[i].backward_timer_default);
-        printf("path_length: %f\n", nodePathtable[i].path_length);
-        printf("path_slope: %f\n", nodePathtable[i].path_slope);
+        printf("path_name: %-15s\t", nodePathtable[i].path_name);
+        printf("path_state_index: %d\t", nodePathtable[i].path_state_index);
+        printf("entry_node_index: %d\t", nodePathtable[i].entry_node_index);
+        printf("exit_node_index: %d\t", nodePathtable[i].exit_node_index);
+        printf("amplitude_factor: %d\t", nodePathtable[i].amplitude_factor);
+        printf("forward_speed: %f\t", nodePathtable[i].forward_speed);
+        printf("backward_speed: %f\t", nodePathtable[i].backward_speed);
+        printf("forward_timer_current: %d\t", nodePathtable[i].forward_timer_current);
+        printf("forward_timer_default: %d\t", nodePathtable[i].forward_timer_default);
+        printf("backward_timer_current: %d\t", nodePathtable[i].backward_timer_current);
+        printf("backward_timer_default: %d\t", nodePathtable[i].backward_timer_default);
+        printf("path_length: %f\t\t", nodePathtable[i].path_length);
+        printf("path_slope: %f\t", nodePathtable[i].path_slope);
         printf("\n");
-        }
+    }
+    printf("\n");
+    printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n\n");
 }
