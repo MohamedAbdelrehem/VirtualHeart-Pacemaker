@@ -61,6 +61,8 @@ for i = 1:length(files)
                             % check if data is True and false and save it as 1 and 0
                         elseif islogical(cell_value)
                             fprintf(fid, '"%d",', cell_value); % Write the logical value as 1 or 0
+                        elseif isfloat(cell_value)
+                            fprintf(fid, '"%f",', cell_value); % Write the float value
                         else
                             % Format based on data type
                             if isnumeric(cell_value)
@@ -81,7 +83,35 @@ for i = 1:length(files)
         else
             % Handle other data types as needed (e.g., numeric arrays)
             csv_filename = fullfile(SaveCSVPath, folder_name, [variable_name '.csv']);
-            writematrix(variable_data, csv_filename);
+            
+            % Open file for writing
+            fid = fopen(csv_filename, 'w');
+            
+            % Iterate through each element and write to file
+            for row = 1:size(variable_data, 1)
+                for col = 1:size(variable_data, 2)
+                    cell_value = variable_data(row, col);
+                    
+                    % Check if cell_value contains a comma
+                    if isnumeric(cell_value)
+                        % Write the numeric value enclosed in double quotes
+                        fprintf(fid, '"%f",', cell_value);
+                    else
+                        % Format based on data type
+                        if ischar(cell_value)
+                            % Write the string enclosed in double quotes
+                            fprintf(fid, '"%s",', cell_value);
+                        else
+                            % Handle other data types as needed
+                            fprintf(fid, '"%s",', num2str(cell_value));
+                        end
+                    end
+                end
+                fprintf(fid, '\n'); % Newline after each row
+            end
+            
+            fclose(fid);
         end
+
     end
 end
