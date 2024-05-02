@@ -67,7 +67,7 @@ void printNodePathTable(const int *const numberofnodes)
         printf("entry_node_index: %d\t", nodePathtable[i].entry_node_index);
         printf("exit_node_index: %d\t", nodePathtable[i].exit_node_index);
         printf("amplitude_factor: %d\t", nodePathtable[i].amplitude_factor);
-        printf("forward_speed: %f\t", nodePathtable[i].forward_speed);
+        printf("forward_speed: %f\t\t", nodePathtable[i].forward_speed);
         printf("backward_speed: %f\t", nodePathtable[i].backward_speed);
         printf("forward_timer_current: %d\t", nodePathtable[i].forward_timer_current);
         printf("forward_timer_default: %d\t", nodePathtable[i].forward_timer_default);
