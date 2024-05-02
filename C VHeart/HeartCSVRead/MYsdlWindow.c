@@ -167,6 +167,34 @@ void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
     TTF_CloseFont(font);
 }
 
+/**
+ * @brief Add circle to the screen
+ *
+ * @param x x position of the circle
+ * @param y y position of the circle
+ * @param radius radius of the circle
+ * @param r red color
+ * @param g green color
+ * @param b blue color
+ */
+void addCircleToScreen(float x, float y, int radius, int r, int g, int b)
+{
+    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+    for (int w = 0; w < radius * 2; w++)
+    {
+        for (int h = 0; h < radius * 2; h++)
+        {
+            int dx = radius - w; // horizontal offset
+            int dy = radius - h; // vertical offset
+            if ((dx * dx + dy * dy) <= (radius * radius))
+            {
+                SDL_RenderDrawPoint(renderer, x + dx, y + dy);
+            }
+        }
+    }
+    SDL_RenderPresent(renderer);
+}
+
 void UI(void)
 {
     isWindowInitialized = initializeWindow();
@@ -187,12 +215,13 @@ void UI(void)
     addTextToScreen("Supervisor", 50, 640, 24, 1);
     addTextToScreen("Dr. Ahmed Mahmoud", 80, 670, 20, 0);
 
-    // add the nodes to the screen
+    addCircleToScreen(100, 100, 50, 255, 0, 0);
 
     while (isWindowInitialized)
     {
-        // Process input events
         ProcessInput();
+        // add circle to the screen and change the color every 1000 ms
+        addCircleToScreen(100, 100, 50, 255, 0, 0);
     }
 
     destroyWindow();

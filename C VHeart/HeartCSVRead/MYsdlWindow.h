@@ -21,12 +21,6 @@
 #define CENTER_X(IMAGE_WIDTH, SCREEN_WIDTH) ((SCREEN_WIDTH - IMAGE_WIDTH) / 2)
 #define CENTER_Y(IMAGE_HEIGHT, SCREEN_HEIGHT) ((SCREEN_HEIGHT - IMAGE_HEIGHT) / 2)
 
-typedef struct
-{
-    int x;
-    int y;
-    int radius;
-} Circle;
 // typedef struct
 // {
 //     int x;
