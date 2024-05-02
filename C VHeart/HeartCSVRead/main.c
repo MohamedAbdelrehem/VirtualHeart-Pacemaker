@@ -11,7 +11,7 @@
 
 #include "constants.h"
 // include the SDL2 library
-// #include "MYsdlWindow.h"
+#include "MYsdlWindow.h"
 
 //^ @MohamedAbdelrehem to @ahhassan88 : I have added the following variables as
 // extern to be able to use them in the main file globally
