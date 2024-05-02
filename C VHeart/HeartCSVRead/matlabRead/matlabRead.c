@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "matlabRead.h"
-#include "nodeTable.h"
 
 /**
  * Reads a CSV file in that exported from my MATLAB code.

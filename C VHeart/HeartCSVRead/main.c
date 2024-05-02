@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "dataStructure.h"
-#include "matlabRead.h"
-#include "nodePath.h"
-#include "nodeTable.h"
+#include "./nodes/dataStructure.h"
+#include "./matlabRead/matlabRead.h"
+#include "./nodes/nodePath.h"
+#include "./nodes/nodeTable.h"
 
 #include "constants.h"
 // include the SDL2 library
@@ -18,15 +18,18 @@
 extern node_def nodeTable[100];
 extern node_path nodePathtable[100];
 
+// number of nodes and pathes that will be read from the csv files
+int numberofnodes = 0;
+int numberofnodesPathes = 0;
+
 // to check if the window is initialized or not
-int isWindowInitialized = FALSE;
+
+void printData();
 
 // will run in main file to initialize the window with int argc, char *argv[]
 int main(int argc, char *argv[])
 {
-  // number of nodes and pathes that will be read from the csv files
-  int numberofnodes = 0;
-  int numberofnodesPathes = 0;
+
   // function pointer to be passed to the readMatlabCSV function and used to
   // save the data to the nodeTable and nodePathTable (ANA GAMMED :D)
   void (*saveToStructFPointer)(char *, const int, const int);
@@ -50,24 +53,33 @@ int main(int argc, char *argv[])
   //? printNodePathTable(&numberofnodesPathes);
   //**--------------------------------------------------------------------------------**//
 
-  //~ SDL Initialization
-  // isWindowInitialized = initializeWindow();
+  // //~ node location table initialization
+  // saveToStructFPointer = &saveToNodeLocationStruct;
+  // readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/"
+  //               "node_pos.csv",
+  //               &numberofnodes, saveToStructFPointer);
+  // //? print nodeTable to check
+  // //? printNodeTable(&numberofnodes);
 
-  // while (isWindowInitialized)
-  // {
-  //   // process the events
-  //   ProcessInput();
-  // }
+  //**--------------------------------------------------------------------------------**//
+  //~ UI
+  UI();
+  //**--------------------------------------------------------------------------------**//
 
-  // destroyWindow();
+  //* print the node table and path table to check without the SDL
+  // printData();
+  return 0;
+}
+
+void printData()
+{
   system("cls");
   while (1)
   {
 
     printNodeTable(&numberofnodes);
     printNodePathTable(&numberofnodesPathes);
-    // go to terminal 0,0 to overwrite the previous print
+    //
     printf("\033[0;0H");
   }
-  return 0;
 }
