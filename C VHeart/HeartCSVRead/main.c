@@ -11,7 +11,7 @@
 
 #include "constants.h"
 // include the SDL2 library
-#include "MYsdlWindow.h"
+// #include "MYsdlWindow.h"
 
 //^ @MohamedAbdelrehem to @ahhassan88 : I have added the following variables as
 // extern to be able to use them in the main file globally
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
                 "node_table.csv",
                 &numberofnodes, saveToStructFPointer);
   //? print nodeTable to check
-  printNodeTable(&numberofnodes);
+  //? printNodeTable(&numberofnodes);
 
   //**--------------------------------------------------------------------------------**//
 
@@ -47,18 +47,27 @@ int main(int argc, char *argv[])
                 "path_table.csv",
                 &numberofnodesPathes, saveToStructFPointer);
   //? print nodeTable to check
-  printNodePathTable(&numberofnodesPathes);
+  //? printNodePathTable(&numberofnodesPathes);
   //**--------------------------------------------------------------------------------**//
 
   //~ SDL Initialization
-  isWindowInitialized = initializeWindow();
+  // isWindowInitialized = initializeWindow();
 
-  while (isWindowInitialized)
+  // while (isWindowInitialized)
+  // {
+  //   // process the events
+  //   ProcessInput();
+  // }
+
+  // destroyWindow();
+  system("cls");
+  while (1)
   {
-    // process the events
-    ProcessInput();
-  }
 
-  destroyWindow();
+    printNodeTable(&numberofnodes);
+    printNodePathTable(&numberofnodesPathes);
+    // go to terminal 0,0 to overwrite the previous print
+    printf("\033[0;0H");
+  }
   return 0;
 }
