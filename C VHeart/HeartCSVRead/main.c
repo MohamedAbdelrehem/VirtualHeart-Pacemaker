@@ -8,6 +8,7 @@
 #include "./matlabRead/matlabRead.h"
 #include "./nodes/nodePath.h"
 #include "./nodes/nodeTable.h"
+#include "./nodes/nodePosition.h"
 
 #include "constants.h"
 // include the SDL2 library
@@ -21,6 +22,7 @@ extern node_path nodePathtable[100];
 // number of nodes and pathes that will be read from the csv files
 int numberofnodes = 0;
 int numberofnodesPathes = 0;
+int numberofnodesLocation = 0;
 
 // to check if the window is initialized or not
 
@@ -36,8 +38,7 @@ int main(int argc, char *argv[])
 
   //~ Node Table Initialization
   saveToStructFPointer = &saveToNodeStruct;
-  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/"
-                "node_table.csv",
+  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/node_table.csv",
                 &numberofnodes, saveToStructFPointer);
   //? print nodeTable to check
   //? printNodeTable(&numberofnodes);
@@ -46,20 +47,18 @@ int main(int argc, char *argv[])
 
   //~ Path Table Initialization
   saveToStructFPointer = &saveToNodePathStruct;
-  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/"
-                "path_table.csv",
+  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/path_table.csv",
                 &numberofnodesPathes, saveToStructFPointer);
   //? print nodeTable to check
   //? printNodePathTable(&numberofnodesPathes);
   //**--------------------------------------------------------------------------------**//
 
-  // //~ node location table initialization
-  // saveToStructFPointer = &saveToNodeLocationStruct;
-  // readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/"
-  //               "node_pos.csv",
-  //               &numberofnodes, saveToStructFPointer);
-  // //? print nodeTable to check
-  // //? printNodeTable(&numberofnodes);
+  //~ node location table initialization
+  saveToStructFPointer = &saveToNodeLocationStruct;
+  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/node_pos.csv",
+                &numberofnodesLocation, saveToStructFPointer);
+  //? print nodeTable to check
+  //? printNodeLocationTable(&numberofnodesLocation);
 
   //**--------------------------------------------------------------------------------**//
   //~ UI
@@ -79,7 +78,8 @@ void printData()
 
     printNodeTable(&numberofnodes);
     printNodePathTable(&numberofnodesPathes);
-    //
+    printNodeLocationTable(&numberofnodes);
+
     printf("\033[0;0H");
   }
 }
