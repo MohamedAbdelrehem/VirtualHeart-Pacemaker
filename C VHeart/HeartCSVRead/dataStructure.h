@@ -37,5 +37,11 @@ typedef struct NodeLocation
     float x;
     float y;
 } node_location;
-
+typedef struct NodePathLocation
+{
+    float entry_x;
+    float entry_y;
+    float exit_x;
+    float exit_y;
+} node_path_location;
 #endif
