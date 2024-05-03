@@ -8,14 +8,18 @@ SDLFiles = ./HeartCSVRead/MYsdlWindow.c
 
 
 buildUI: 
-	$(CC)  $(FILESlistNoSDL) $(SDLFiles) $(CFLAGS) -o Heart
-	make run
+	$(CC)  $(FILESlistNoSDL) $(SDLFiles) $(CFLAGS) -o HeartUI
+	make runUI
 
 buildNoUI: 
-	$(CC) $(FILESlistNoSDL)  -o Heart
-	make run
-run: 
-	./Heart
+	$(CC) $(FILESlistNoSDL)  -o HeartNoUI
+	make runNoUI
+
+runUI:
+	./HeartUI
+
+runNoUI: 
+	./HeartNoUI
 
 clean:
 	rm -f ./Heart.exe
