@@ -62,19 +62,19 @@ void printNodePathTable(const int *const numberofnodes)
     printf("Table of nodes Path:\n\n");
     for (int i = 0; i < *numberofnodes; i++)
     {
-        printf("path_name: %-15s\t", nodePathtable[i].path_name);
+        printf("path_name: %-5s\t", nodePathtable[i].path_name);
         printf("path_state_index: %d\t", nodePathtable[i].path_state_index);
         printf("entry_node_index: %d\t", nodePathtable[i].entry_node_index);
         printf("exit_node_index: %d\t", nodePathtable[i].exit_node_index);
         printf("amplitude_factor: %d\t", nodePathtable[i].amplitude_factor);
-        printf("forward_speed: %f\t\t", nodePathtable[i].forward_speed);
-        printf("backward_speed: %f\t", nodePathtable[i].backward_speed);
+        printf("forward_speed: %0.2f\t", nodePathtable[i].forward_speed);
+        printf("backward_speed: %0.2f\t", nodePathtable[i].backward_speed);
         printf("forward_timer_current: %d\t", nodePathtable[i].forward_timer_current);
         printf("forward_timer_default: %d\t", nodePathtable[i].forward_timer_default);
         printf("backward_timer_current: %d\t", nodePathtable[i].backward_timer_current);
         printf("backward_timer_default: %d\t", nodePathtable[i].backward_timer_default);
-        printf("path_length: %f\t\t", nodePathtable[i].path_length);
-        printf("path_slope: %f\t", nodePathtable[i].path_slope);
+        printf("path_length: %0.2f\t", nodePathtable[i].path_length);
+        printf("path_slope: %0.2f\t", nodePathtable[i].path_slope);
         printf("\n");
     }
     printf("\n");
