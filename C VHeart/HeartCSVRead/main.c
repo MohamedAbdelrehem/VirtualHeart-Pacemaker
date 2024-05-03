@@ -97,6 +97,8 @@ void printData()
   while (1)
   {
     menu();
+    // cyan color
+    printf("\033[36m");
 
     switch (choice)
     {
@@ -117,7 +119,10 @@ void printData()
     case 'Q':
       return; // Exit the function
     default:
-      printf("Invalid choice. Please try again.\n");
+      // red color
+      printf("\033[31m");
+      printf("\nInvalid choice. Please try again.\n");
+      printf("\033[0m");
     }
     if (kbhit())
     {
@@ -131,6 +136,9 @@ void printData()
 
 void menu(void)
 {
+  // make the text red and blinking
+  printf("\033[31m");
+  printf("\033[5m");
   printf("          |  \\ \\ | |/ /\n");
   printf("          |  |\\ `' ' /\n");
   printf("          |  ;'aorta \\      / , pulmonary\n");
@@ -152,8 +160,7 @@ void menu(void)
   printf("          |  |    |   | ``';;;'  FL\n");
   printf("                  aorta\n\n");
 
-  printf("** Make sure Terminal is full screen and font size is small** \n\n");
-
+  printf("\033[0m");
   printf("1. Print Node Table\n");
   printf("2. Print Node Path Table\n");
   printf("3. Print Node Location Table\n");
