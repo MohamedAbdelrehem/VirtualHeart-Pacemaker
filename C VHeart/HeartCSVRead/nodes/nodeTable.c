@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "./dataStructure.h"
+#include "../dataStructure.h"
 #include "./nodeTable.h"
 
 node_def nodeTable[100];
