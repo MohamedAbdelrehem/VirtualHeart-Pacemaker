@@ -2,6 +2,9 @@
 #include "MYsdlWindow.h"
 #include "constants.h"
 
+// include the structs file the node and path structs
+#include "dataStructure.h"
+
 //^ SDL window and renderer global variables so that we can use them in the main file
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
@@ -42,7 +45,7 @@ int initializeWindow(void)
         fprintf(stderr, "Error creating window: %s\n", SDL_GetError());
         return FALSE;
     }
-    //~ Create a renderer for the window (window to attach the renderer to, display index: -1(defult), flags: (0) test:SDL_RENDERER_ACCELERATED)
+    //~ Create a renderer for the window (window to attach the renderer to, display index: -1(default), flags: (0) test:SDL_RENDERER_ACCELERATED)
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (!renderer)
     {
@@ -100,18 +103,6 @@ void imageInitialization(void)
 }
 
 /**
- * @brief Render the heart image
- * contains the image texture and the destination rectangle
- * dest = {x, y, width, height} and calculate the center of the screen
- */
-void renderHeartImage(void)
-{
-    SDL_Rect dest = {CENTER_X(imageHeart->w, SCREEN_WIDTH), CENTER_Y(imageHeart->h, SCREEN_HEIGHT), imageHeart->w, imageHeart->h};
-    SDL_RenderCopy(renderer, image_texture, NULL, &dest);
-    SDL_RenderPresent(renderer);
-}
-
-/**
  * @brief Destroy the window and renderer
  *
  */
@@ -156,7 +147,7 @@ void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
         fprintf(stderr, "Error opening font: %s\n", TTF_GetError());
         return;
     }
-    SDL_Color color = {0, 200, 200};
+    SDL_Color color = {32, 178, 170};
     SDL_Surface *surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dest = {x, y, surface->w, surface->h};
@@ -173,13 +164,26 @@ void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
  * @param x x position of the circle
  * @param y y position of the circle
  * @param radius radius of the circle
- * @param r red color
- * @param g green color
- * @param b blue color
+ * @param ColorNumber color of the circle
  */
-void addCircleToScreen(float x, float y, int radius, int r, int g, int b)
+void addCircleToScreen(float x, float y, int radius, int ColorNumber)
 {
-    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+    // set the color of the circle based on the ColorNumber % 3 to get 3 colors only
+    switch (ColorNumber % 3)
+    {
+    case 0:
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        break;
+    case 1:
+        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+        break;
+    case 2:
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        break;
+    default:
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    }
+
     for (int w = 0; w < radius * 2; w++)
     {
         for (int h = 0; h < radius * 2; h++)
@@ -195,34 +199,107 @@ void addCircleToScreen(float x, float y, int radius, int r, int g, int b)
     SDL_RenderPresent(renderer);
 }
 
+/**
+ * @brief Render the heart image
+ * contains the image texture and the destination rectangle
+ * dest = {x, y, width, height} and calculate the center of the screen
+ */
+void renderHeartImage(void)
+{
+    SDL_Rect dest = {CENTER_X(imageHeart->w, SCREEN_WIDTH), CENTER_Y(imageHeart->h, SCREEN_HEIGHT), imageHeart->w, imageHeart->h};
+    SDL_RenderCopy(renderer, image_texture, NULL, &dest);
+    SDL_RenderPresent(renderer);
+}
 void UI(void)
 {
     isWindowInitialized = initializeWindow();
 
-    // set background color to white
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderClear(renderer);
-    // make image texture as the background
-    renderHeartImage();
-    // add Title to the screen
-    addTextToScreen("Virtual Heart", 30, 30, 50, 1);
-    // add team members names
-    addTextToScreen("Team Members", 730, 640, 24, 1);
-    addTextToScreen("Mohamed Abdelrehem", 800, 670, 20, 0);
-    addTextToScreen("Ahmed Hassan", 800, 690, 20, 0);
-    addTextToScreen("Ahmed Ali Ragab", 800, 710, 20, 0);
-    // add supervisor name
-    addTextToScreen("Supervisor", 50, 640, 24, 1);
-    addTextToScreen("Dr. Ahmed Mahmoud", 80, 670, 20, 0);
+    initializeUIElements();
+    extern node_location nodeLocationTable[100];
+    extern int numberofnodesLocation;
 
-    addCircleToScreen(100, 100, 50, 255, 0, 0);
+    extern node_def nodeTable[100];
+    extern int numberofnodes;
+
+    // use path table to draw the lines between the nodes
+    extern node_path nodePathtable[100];
+    extern int numberofnodesPathes;
+
+    // the center
+    float CenterX = CENTER_X(imageHeart->w, SCREEN_WIDTH);
+    float CenterY = CENTER_Y(imageHeart->h, SCREEN_HEIGHT);
+    // TODO: remove this x just for testing
+    int x = 0;
 
     while (isWindowInitialized)
     {
         ProcessInput();
-        // add circle to the screen and change the color every 1000 ms
-        addCircleToScreen(100, 100, 50, 255, 0, 0);
+        // draw a line from left top to right bottom
+
+        // go throw nodes position and add circle to the screen
+        for (int i = 0; i < numberofnodesLocation; i++)
+        {
+            addCircleToScreen(CenterX + nodeLocationTable[i].x, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h)), 5, x);
+            x++;
+        }
+        x++;
+
+        // delay to see the window
+        SDL_Delay(200);
     }
 
     destroyWindow();
+}
+
+void addLineToScreen(float startX, float startY, float endX, float endY, int ColorNumber)
+{
+    // set the color of the circle based on the ColorNumber % 5 to get 5 colors only
+    switch (ColorNumber % 5)
+    {
+    case 0:
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        break;
+    case 1:
+        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+        break;
+    case 2:
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        break;
+    case 3:
+        SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+        break;
+    case 4:
+        SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+        break;
+    default:
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    }
+    SDL_RenderDrawLine(renderer, startX, startY, endX, endY);
+    SDL_RenderPresent(renderer);
+}
+
+void initializeUIElements(void)
+{
+    // Clear the renderer
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderClear(renderer);
+
+    // Render the background image
+    renderHeartImage();
+
+    // Add Title to the screen
+    addTextToScreen("Virtual Heart", 30, 30, 50, 1);
+
+    // Add team members names
+    addTextToScreen("Team Members", 730, 640, 24, 1);
+    addTextToScreen("Mohamed Abdelrehem", 800, 670, 20, 0);
+    addTextToScreen("Ahmed Hassan", 800, 690, 20, 0);
+    addTextToScreen("Ahmed Ali Ragab", 800, 710, 20, 0);
+
+    // Add supervisor name
+    addTextToScreen("Supervisor", 50, 640, 24, 1);
+    addTextToScreen("Dr. Ahmed Mahmoud", 80, 670, 25, 0);
+
+    // Present the renderer
+    SDL_RenderPresent(renderer);
 }

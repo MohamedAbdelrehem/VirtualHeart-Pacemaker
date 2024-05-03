@@ -21,14 +21,6 @@
 #define CENTER_X(IMAGE_WIDTH, SCREEN_WIDTH) ((SCREEN_WIDTH - IMAGE_WIDTH) / 2)
 #define CENTER_Y(IMAGE_HEIGHT, SCREEN_HEIGHT) ((SCREEN_HEIGHT - IMAGE_HEIGHT) / 2)
 
-// typedef struct
-// {
-//     int x;
-//     int y;
-//     int w;
-//     int h;
-// } Rectangle;
-
 int initializeWindow(void);
 void imageInitialization(void);
 void ProcessInput(void);
@@ -37,5 +29,8 @@ void renderHeartImage(void);
 void initializeFont(void);
 void addTextToScreen(char *text, int x, int y, int size, int fontNumber);
 void UI(void);
+void initializeUIElements(void);
+
+void addLineToScreen(float startX, float startY, float endX, float endY, int ColorNumber);
 
 #endif // SDL_WINDOW_H
