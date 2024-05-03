@@ -206,11 +206,11 @@ void addCircleToScreen(float x, float y, int radius, int ColorNumber)
  */
 void renderHeartImage(void)
 {
-    SDL_Rect dest = {CENTER_X(imageHeart->w, SCREEN_WIDTH), CENTER_Y(imageHeart->h, SCREEN_HEIGHT), imageHeart->w, imageHeart->h};
+    SDL_Rect dest = {CENTER_X(imageHeart->w * SCREEN_SCALE, SCREEN_WIDTH), CENTER_Y(imageHeart->h * SCREEN_SCALE, SCREEN_HEIGHT), imageHeart->w * SCREEN_SCALE, imageHeart->h * SCREEN_SCALE};
     SDL_RenderCopy(renderer, image_texture, NULL, &dest);
     SDL_RenderPresent(renderer);
 }
-void UI(void)
+void mainUI(void)
 {
     isWindowInitialized = initializeWindow();
 
@@ -226,10 +226,10 @@ void UI(void)
     extern int numberofnodesPathes;
 
     // the center
-    float CenterX = CENTER_X(imageHeart->w, SCREEN_WIDTH);
-    float CenterY = CENTER_Y(imageHeart->h, SCREEN_HEIGHT);
+    float CenterX = CENTER_X(imageHeart->w * SCREEN_SCALE, SCREEN_WIDTH);
+    float CenterY = CENTER_Y(imageHeart->h * SCREEN_SCALE, SCREEN_HEIGHT);
     // TODO: remove this x just for testing
-    int x = 0;
+    int randomNumberForColors = 0;
 
     while (isWindowInitialized)
     {
@@ -239,10 +239,23 @@ void UI(void)
         // go throw nodes position and add circle to the screen
         for (int i = 0; i < numberofnodesLocation; i++)
         {
-            addCircleToScreen(CenterX + nodeLocationTable[i].x, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h)), 5, x);
-            x++;
+            addCircleToScreen(CenterX + nodeLocationTable[i].x * SCREEN_SCALE, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h) * SCREEN_SCALE), 5 * SCREEN_SCALE, randomNumberForColors);
+            randomNumberForColors++;
         }
-        x++;
+        // go throw pathes and add lines to the screen
+        for (int i = 0; i < numberofnodesPathes; i++)
+        {
+            int entryIndex = nodePathtable[i].entry_node_index - 1;
+            int exitIndex = nodePathtable[i].exit_node_index - 1;
+            addLineToScreen(CenterX + nodeLocationTable[entryIndex].x * SCREEN_SCALE,
+                            (CenterY + -1 * (nodeLocationTable[entryIndex].y - imageHeart->h) * SCREEN_SCALE),
+                            CenterX + nodeLocationTable[exitIndex].x * SCREEN_SCALE,
+                            (CenterY + -1 * (nodeLocationTable[exitIndex].y - imageHeart->h) * SCREEN_SCALE),
+                            randomNumberForColors, 5 * SCREEN_SCALE);
+            randomNumberForColors++;
+        }
+
+        randomNumberForColors++;
 
         // delay to see the window
         SDL_Delay(200);
@@ -251,31 +264,31 @@ void UI(void)
     destroyWindow();
 }
 
-void addLineToScreen(float startX, float startY, float endX, float endY, int ColorNumber)
+void addLineToScreen(float startX, float startY, float endX, float endY, int ColorNumber, int thickness)
 {
-    // set the color of the circle based on the ColorNumber % 5 to get 5 colors only
+    // Set the color of the line based on the ColorNumber % 5 to get 5 colors only
     switch (ColorNumber % 5)
     {
+        // Draw a line with variable thickness using SDL_gfx
     case 0:
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 255, 0, 0, 255);
+
         break;
     case 1:
-        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 255, 0, 255);
         break;
     case 2:
-        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 0, 255, 255);
         break;
     case 3:
-        SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 255, 255, 255);
         break;
     case 4:
-        SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 255, 0, 255, 255);
         break;
     default:
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 0, 0, 255);
     }
-    SDL_RenderDrawLine(renderer, startX, startY, endX, endY);
-    SDL_RenderPresent(renderer);
 }
 
 void initializeUIElements(void)
@@ -291,14 +304,14 @@ void initializeUIElements(void)
     addTextToScreen("Virtual Heart", 30, 30, 50, 1);
 
     // Add team members names
-    addTextToScreen("Team Members", 730, 640, 24, 1);
-    addTextToScreen("Mohamed Abdelrehem", 800, 670, 20, 0);
-    addTextToScreen("Ahmed Hassan", 800, 690, 20, 0);
-    addTextToScreen("Ahmed Ali Ragab", 800, 710, 20, 0);
+    addTextToScreen("Team Members:", SCREEN_WIDTH - 250, SCREEN_HEIGHT - 128, 24, 1);
+    addTextToScreen("Mohamed Abdelrehem", SCREEN_WIDTH - 230, SCREEN_HEIGHT - 98, 20, 0);
+    addTextToScreen("Ahmed Hassan", SCREEN_WIDTH - 230, SCREEN_HEIGHT - 78, 20, 0);
+    addTextToScreen("Ahmed Ali Ragab", SCREEN_WIDTH - 230, SCREEN_HEIGHT - 58, 20, 0);
 
     // Add supervisor name
-    addTextToScreen("Supervisor", 50, 640, 24, 1);
-    addTextToScreen("Dr. Ahmed Mahmoud", 80, 670, 25, 0);
+    addTextToScreen("Supervisor:", 50, SCREEN_HEIGHT - 128, 24, 1);
+    addTextToScreen("Dr. Ahmed Mahmoud", 80, SCREEN_HEIGHT - 98, 25, 0);
 
     // Present the renderer
     SDL_RenderPresent(renderer);
