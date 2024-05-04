@@ -46,6 +46,8 @@ void saveToNodeStruct(char *token, const int columnNo, const int rowNo)
 
     case 10:
         nodeTable[rowNo].index_of_path_activate_the_node = atoi(token);
+        // decrement by 1
+        nodeTable[rowNo].index_of_path_activate_the_node--;
         break;
     case 11:
         nodeTable[rowNo].AV_node = atoi(token);
@@ -61,18 +63,18 @@ void printNodeTable(const int *const numberofnodes)
     printf("Table of nodes:\n\n");
     for (int i = 0; i < *numberofnodes; i++)
     {
-        printf("node_name: %-15s\t", nodeTable[i].node_name);
-        printf("node_state_index: %d\t", nodeTable[i].node_state_index);
-        printf("TERP_current: %d\t", nodeTable[i].TERP_current);
-        printf("TERP_default: %d\t", nodeTable[i].TERP_default);
-        printf("TRRP_current: %d\t", nodeTable[i].TRRP_current);
-        printf("TRRP_default: %d\t", nodeTable[i].TRRP_default);
-        printf("TREST_current: %d\t", nodeTable[i].TREST_current);
-        printf("TREST_default: %d\t", nodeTable[i].TREST_default);
-        printf("activation: %d\t", nodeTable[i].activation);
-        printf("TERP_bounds: [%d, %d]\t\t", nodeTable[i].TERP_bounds[0], nodeTable[i].TERP_bounds[1]);
-        printf("index_of_path_activate_the_node: %d\t", nodeTable[i].index_of_path_activate_the_node);
-        printf("AV_node: %d\t", nodeTable[i].AV_node);
+        printf("node_name: %-5s\t", nodeTable[i].node_name);
+        printf("node_state_index: %-4d\t", nodeTable[i].node_state_index);
+        printf("TERP_current: %-4d\t", nodeTable[i].TERP_current);
+        printf("TERP_default: %-4d\t", nodeTable[i].TERP_default);
+        printf("TRRP_current: %-4d\t", nodeTable[i].TRRP_current);
+        printf("TRRP_default: %-4d\t", nodeTable[i].TRRP_default);
+        printf("TREST_current: %-4d\t", nodeTable[i].TREST_current);
+        printf("TREST_default: %-4d\t", nodeTable[i].TREST_default);
+        printf("activation: %-3d\t", nodeTable[i].activation);
+        printf("TERP_bounds: [%-4d, %-4d]\t", nodeTable[i].TERP_bounds[0], nodeTable[i].TERP_bounds[1]);
+        printf("index_of_path_activate_the_node: %-4d\t", nodeTable[i].index_of_path_activate_the_node);
+        printf("AV_node: %-4d\t", nodeTable[i].AV_node);
         printf("\n");
     }
     printf("\n");
