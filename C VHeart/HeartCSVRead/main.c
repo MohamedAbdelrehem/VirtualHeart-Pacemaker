@@ -1,3 +1,5 @@
+// TODO : use pointer to struct to pass the data to the functions instead of passing the struct itself to save memory
+
 #include "../Settings.h"
 
 #include <stdbool.h>
