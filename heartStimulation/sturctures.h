@@ -4,21 +4,21 @@
 
 typedef struct Node{
  char node_name[10];
- int node_state_index;//suggestion  using enum with three values
- int TERP_current;//suggestion using unsigned short
- int TERP_default;//unsigned short
- int TRRP_current;//unsigned short
- int TRRP_default;//unsigned short
- int TREST_current;//unsigned short
- int TREST_default;//unsigned short
+ int node_state_index;
+ int TERP_current;
+ int TERP_default;
+ int TRRP_current;
+ int TRRP_default;
+ int TREST_current;
+ int TREST_default;
  bool activation;
- int TERP_bounds[2];//unsigned short
- int index_of_path_activate_the_node;//unsigned short
- int AV_node;//suggestion using enum with two values
+ int TERP_bounds[2];
+ int index_of_path_activate_the_node;
+ int AV_node;
 
 }node_def;
 
-typedef struct Path{//same suggestion as above mostly all of the int can be  short and path_state_index can be enum
+typedef struct Path{
 char path_name[10];
 int path_state_index;
 int entry_node_index;
@@ -32,7 +32,7 @@ int backward_timer_current;
 int backward_timer_default;
 float path_length;
 float path_slope;
-}path;
+}path_def;
 
 
 
