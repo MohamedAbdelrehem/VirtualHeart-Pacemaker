@@ -3,11 +3,11 @@
 /*      make buildUI
 /*      make buildNoUI
 */
-#define TRUE 1
-#define FALSE 0
 
 #ifndef SETTINGS_H
 #define SETTINGS_H
+
+#include "./HeartCSVRead/constants.h"
 
 // This macro represents the state of the UI.
 // When UION is set to TRUE, it indicates that the UI feature is enabled.
