@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "MYsdlWindow.h"
-#include "constants.h"
+#include "./../../HeartCSVRead/constants.h"
 
 // include the structs file the node and path structs
-#include "dataStructure.h"
+#include "./../../HeartCSVRead/dataStructure.h"
 
 //^ SDL window and renderer global variables so that we can use them in the main file
 SDL_Window *window = NULL;
@@ -168,17 +168,18 @@ void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
  */
 void addCircleToScreen(float x, float y, int radius, int ColorNumber)
 {
+
     // set the color of the circle based on the ColorNumber % 3 to get 3 colors only
-    switch (ColorNumber % 3)
+    switch (ColorNumber)
     {
-    case 0:
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        break;
     case 1:
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
         break;
     case 2:
-        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        break;
+    case 3:
+        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
         break;
     default:
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -228,8 +229,6 @@ void mainUI(void)
     // the center
     float CenterX = CENTER_X(imageHeart->w * SCREEN_SCALE, SCREEN_WIDTH);
     float CenterY = CENTER_Y(imageHeart->h * SCREEN_SCALE, SCREEN_HEIGHT);
-    // TODO: remove this x just for testing
-    int randomNumberForColors = 0;
 
     while (isWindowInitialized)
     {
@@ -239,26 +238,33 @@ void mainUI(void)
         // go throw nodes position and add circle to the screen
         for (int i = 0; i < numberofnodesLocation; i++)
         {
-            addCircleToScreen(CenterX + nodeLocationTable[i].x * SCREEN_SCALE, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h) * SCREEN_SCALE), 5 * SCREEN_SCALE, randomNumberForColors);
-            randomNumberForColors++;
+            addCircleToScreen(CenterX + nodeLocationTable[i].x * SCREEN_SCALE, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h) * SCREEN_SCALE), 5 * SCREEN_SCALE, nodeTable[i].node_state_index);
         }
         // go throw pathes and add lines to the screen
         for (int i = 0; i < numberofnodesPathes; i++)
         {
-            int entryIndex = nodePathtable[i].entry_node_index - 1;
-            int exitIndex = nodePathtable[i].exit_node_index - 1;
-            addLineToScreen(CenterX + nodeLocationTable[entryIndex].x * SCREEN_SCALE,
-                            (CenterY + -1 * (nodeLocationTable[entryIndex].y - imageHeart->h) * SCREEN_SCALE),
-                            CenterX + nodeLocationTable[exitIndex].x * SCREEN_SCALE,
-                            (CenterY + -1 * (nodeLocationTable[exitIndex].y - imageHeart->h) * SCREEN_SCALE),
-                            randomNumberForColors, 5 * SCREEN_SCALE);
-            randomNumberForColors++;
+            addLineToScreen(CenterX + nodeLocationTable[nodePathtable[i].entry_node_index].x * SCREEN_SCALE,
+                            (CenterY + -1 * (nodeLocationTable[nodePathtable[i].entry_node_index].y - imageHeart->h) * SCREEN_SCALE),
+                            CenterX + nodeLocationTable[nodePathtable[i].exit_node_index].x * SCREEN_SCALE,
+                            (CenterY + -1 * (nodeLocationTable[nodePathtable[i].exit_node_index].y - imageHeart->h) * SCREEN_SCALE),
+                            nodePathtable[i].path_state_index, 5 * SCREEN_SCALE);
         }
 
-        randomNumberForColors++;
+        //! debug start to view first
+        // // add text to the screen
+        // char TrestCurentText[50];
 
-        // delay to see the window
-        SDL_Delay(200);
+        // itoa(nodeTable[0].TREST_current, TrestCurentText, 10);
+
+        // addTextToScreen(TrestCurentText, SCREEN_WIDTH - 230, SCREEN_HEIGHT - 58, 20, 0);
+        // // clear the screen
+        // SDL_RenderClear(renderer);
+        //! debug end
+
+        heart_model(nodeTable, numberofnodes, nodePathtable, numberofnodesPathes);
+
+        // delay
+        //  SDL_Delay(1000);
     }
 
     destroyWindow();
@@ -267,27 +273,27 @@ void mainUI(void)
 void addLineToScreen(float startX, float startY, float endX, float endY, int ColorNumber, int thickness)
 {
     // Set the color of the line based on the ColorNumber % 5 to get 5 colors only
-    switch (ColorNumber % 5)
+    switch (ColorNumber)
     {
         // Draw a line with variable thickness using SDL_gfx
-    case 0:
-        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 255, 0, 0, 255);
+    case 1:
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 0, 255, 255);
 
         break;
-    case 1:
+    case 2:
         thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 255, 0, 255);
         break;
-    case 2:
-        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 0, 255, 255);
-        break;
     case 3:
-        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 255, 255, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 255, 255, 0, 255);
         break;
     case 4:
-        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 255, 0, 255, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 0, 0, 255);
+        break;
+    case 5:
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 255, 0, 0, 255);
         break;
     default:
-        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 0, 0, 0, 255);
+        thickLineRGBA(renderer, startX, startY, endX, endY, thickness, 100, 100, 100, 255);
     }
 }
 
