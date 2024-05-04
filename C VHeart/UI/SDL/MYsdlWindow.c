@@ -213,6 +213,7 @@ void renderHeartImage(void)
 }
 void mainUI(void)
 {
+
     isWindowInitialized = initializeWindow();
 
     initializeUIElements();
@@ -225,6 +226,14 @@ void mainUI(void)
     // use path table to draw the lines between the nodes
     extern node_path nodePathtable[100];
     extern int numberofnodesPathes;
+
+    //& run heart simulation before the UI for counter time
+    int counter = 0;
+    while (counter < 680)
+    {
+        heart_model(nodeTable, numberofnodes, nodePathtable, numberofnodesPathes);
+        counter++;
+    }
 
     // the center
     float CenterX = CENTER_X(imageHeart->w * SCREEN_SCALE, SCREEN_WIDTH);
@@ -264,7 +273,7 @@ void mainUI(void)
         heart_model(nodeTable, numberofnodes, nodePathtable, numberofnodesPathes);
 
         // delay
-        //  SDL_Delay(1000);
+        SDL_Delay(5);
     }
 
     destroyWindow();
