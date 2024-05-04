@@ -22,8 +22,8 @@ void saveToNodePathLocationStruct(const int *const numberofnodesPathes)
 { // use node nodepath to get entry and exit node index and use index from nodeLocationTable to get the x and y of the node that will be used to draw the line and save it using node_path_location struct
     for (int i = 0; i < *numberofnodesPathes; i++)
     {
-        int entryIndex = nodePathtable[i].entry_node_index - 1;
-        int exitIndex = nodePathtable[i].exit_node_index - 1;
+        int entryIndex = nodePathtable[i].entry_node_index;
+        int exitIndex = nodePathtable[i].exit_node_index;
         nodePathLocationTable[i].entry_x = nodeLocationTable[entryIndex].x;
         nodePathLocationTable[i].entry_y = nodeLocationTable[entryIndex].y;
         nodePathLocationTable[i].exit_x = nodeLocationTable[exitIndex].x;

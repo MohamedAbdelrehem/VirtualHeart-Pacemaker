@@ -20,9 +20,13 @@ void saveToNodePathStruct(char *token, const int columnNo, const int rowNo)
         break;
     case 2:
         nodePathtable[rowNo].entry_node_index = atoi(token);
+        // decrement by 1 to match the index in the array
+        nodePathtable[rowNo].entry_node_index--;
         break;
     case 3:
         nodePathtable[rowNo].exit_node_index = atoi(token);
+        // decrement by 1 to match the index in the array
+        nodePathtable[rowNo].exit_node_index--;
         break;
     case 4:
         nodePathtable[rowNo].amplitude_factor = atoi(token);
