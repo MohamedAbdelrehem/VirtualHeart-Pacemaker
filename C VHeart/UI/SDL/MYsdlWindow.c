@@ -168,6 +168,8 @@ void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
  */
 void addCircleToScreen(float x, float y, int radius, int ColorNumber)
 {
+    // every 20 circles it renders the screen
+    static int counter = 0;
 
     // set the color of the circle based on the ColorNumber % 3 to get 3 colors only
     switch (ColorNumber)
@@ -197,7 +199,13 @@ void addCircleToScreen(float x, float y, int radius, int ColorNumber)
             }
         }
     }
-    SDL_RenderPresent(renderer);
+
+    counter++;
+    if (counter == 20)
+    {
+        SDL_RenderPresent(renderer);
+        counter = 0;
+    }
 }
 
 /**
@@ -242,13 +250,6 @@ void mainUI(void)
     while (isWindowInitialized)
     {
         ProcessInput();
-        // draw a line from left top to right bottom
-
-        // go throw nodes position and add circle to the screen
-        for (int i = 0; i < numberofnodesLocation; i++)
-        {
-            addCircleToScreen(CenterX + nodeLocationTable[i].x * SCREEN_SCALE, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h) * SCREEN_SCALE), 5 * SCREEN_SCALE, nodeTable[i].node_state_index);
-        }
         // go throw pathes and add lines to the screen
         for (int i = 0; i < numberofnodesPathes; i++)
         {
@@ -256,24 +257,21 @@ void mainUI(void)
                             (CenterY + -1 * (nodeLocationTable[nodePathtable[i].entry_node_index].y - imageHeart->h) * SCREEN_SCALE),
                             CenterX + nodeLocationTable[nodePathtable[i].exit_node_index].x * SCREEN_SCALE,
                             (CenterY + -1 * (nodeLocationTable[nodePathtable[i].exit_node_index].y - imageHeart->h) * SCREEN_SCALE),
-                            nodePathtable[i].path_state_index, 5 * SCREEN_SCALE);
+                            nodePathtable[i].path_state_index, 4 * SCREEN_SCALE);
+        }
+        // go throw nodes position and add circle to the screen
+        for (int i = 0; i < numberofnodesLocation; i++)
+        {
+            addCircleToScreen(CenterX + nodeLocationTable[i].x * SCREEN_SCALE, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h) * SCREEN_SCALE), 5 * SCREEN_SCALE, nodeTable[i].node_state_index);
         }
 
-        //! debug start to view first
-        // // add text to the screen
-        // char TrestCurentText[50];
-
-        // itoa(nodeTable[0].TREST_current, TrestCurentText, 10);
-
-        // addTextToScreen(TrestCurentText, SCREEN_WIDTH - 230, SCREEN_HEIGHT - 58, 20, 0);
-        // // clear the screen
-        // SDL_RenderClear(renderer);
-        //! debug end
+        // render the screen
+        SDL_RenderPresent(renderer);
 
         heart_model(nodeTable, numberofnodes, nodePathtable, numberofnodesPathes);
 
         // delay
-        SDL_Delay(5);
+        SDL_Delay(DELAY);
     }
 
     destroyWindow();
