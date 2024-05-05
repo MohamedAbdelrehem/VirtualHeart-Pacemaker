@@ -14,7 +14,7 @@
 //&use "make buildUI" with TRUE
 // When UION is set to FALSE, it indicates that the UI feature is disabled and terminal tables.
 //&use "make buildNoUI" with FALSE
-#define UION TRUE
+#define UION FALSE
 
 // This macro represents the state of the screen size.
 // When SCREENSIZE is set to 0, it indicates that the screen size is 1024x720.
