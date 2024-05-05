@@ -24,10 +24,10 @@
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #endif
-#define HEART_IMAGE_PATH "D:/github/VirtualHeart&Pacemaker/C VHeart/assets/images/EP.JPG"
-#define FONT_PATH0 "D:/github/VirtualHeart&Pacemaker/C VHeart/assets/fonts/Arial.ttf"
-#define FONT_PATH1 "D:/github/VirtualHeart&Pacemaker/C VHeart/assets/fonts/Atop-R99O3.ttf"
-#define FONT_PATH2 "D:/github/VirtualHeart&Pacemaker/C VHeart/assets/fonts/LoveDays-2v7Oe.ttf"
+#define HEART_IMAGE_PATH "/assets/images/EP.JPG"
+#define FONT_PATH0 "/assets/fonts/Arial.ttf"
+#define FONT_PATH1 "/assets/fonts/Atop-R99O3.ttf"
+#define FONT_PATH2 "/assets/fonts/LoveDays-2v7Oe.ttf"
 
 // heart model
 #include "./../../HeartModel/heartModel.h"
