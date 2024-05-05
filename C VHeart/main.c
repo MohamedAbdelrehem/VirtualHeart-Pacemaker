@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
   //~ Node Table Initialization
   saveToStructFPointer = &saveToNodeStruct;
-  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/node_table.csv",
+  readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/node_table.csv",
                 &numberofnodes, saveToStructFPointer);
   //? print nodeTable to check
   //? printNodeTable(&numberofnodes);
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 
   //~ Path Table Initialization
   saveToStructFPointer = &saveToNodePathStruct;
-  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/path_table.csv",
+  readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/path_table.csv",
                 &numberofnodesPathes, saveToStructFPointer);
   //? print nodeTable to check
   //? printNodePathTable(&numberofnodesPathes);
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
   //~ node location table initialization
   saveToStructFPointer = &saveToNodeLocationStruct;
-  readMatlabCSV("D:/github/VirtualHeart&Pacemaker/2-MatlabToCSVOutput/EP_AVNRT/node_pos.csv",
+  readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/node_pos.csv",
                 &numberofnodesLocation, saveToStructFPointer);
   //? print nodeTable to check
   //? printNodeLocationTable(&numberofnodesLocation);
