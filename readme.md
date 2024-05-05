@@ -8,7 +8,7 @@
 
 # terminal based UI
 
-![VHeart](./Assets/VHeart.gif)
+![VHeart](./0-Assets/VHeart.gif)
 
 # File tree
 
