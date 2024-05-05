@@ -13,6 +13,7 @@
 #include "./../../HeartCSVRead/nodes/nodeTable.h"
 #include "./../../HeartCSVRead/nodes/nodePosition.h"
 #include "./../../HeartCSVRead/nodes/nodePathLoaction.h"
+#include "./../../HeartCSVRead/probe/probeTable.h"
 
 #include "./../../HeartModel/heartModel.h"
 #include "./../../HeartCSVRead/dataStructure.h"
