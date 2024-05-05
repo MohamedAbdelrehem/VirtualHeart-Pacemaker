@@ -88,7 +88,11 @@ void ProcessInput(void)
 
 void imageInitialization(void)
 {
-    imageHeart = IMG_Load(HEART_IMAGE_PATH);
+
+    //? get the path of the image from .exe file relative path to image in the assets folder
+    char *executablePath = SDL_GetBasePath();
+
+    imageHeart = IMG_Load(strcat(executablePath, HEART_IMAGE_PATH));
     if (!imageHeart)
     {
         fprintf(stderr, "Error creating image: %s\n", IMG_GetError());
@@ -130,16 +134,18 @@ void initializeFont(void)
 
 void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
 {
+    //? get the path of the image from .exe file relative path to image in the assets folder
+    char *executablePath = SDL_GetBasePath();
     switch (fontNumber)
     {
     case 1:
-        font = TTF_OpenFont(FONT_PATH1, size);
+        font = TTF_OpenFont(strcat(executablePath, FONT_PATH1), size);
         break;
     case 2:
-        font = TTF_OpenFont(FONT_PATH2, size);
+        font = TTF_OpenFont(strcat(executablePath, FONT_PATH2), size);
         break;
     default:
-        font = TTF_OpenFont(FONT_PATH0, size);
+        font = TTF_OpenFont(strcat(executablePath, FONT_PATH0), size);
     }
 
     if (!font)
