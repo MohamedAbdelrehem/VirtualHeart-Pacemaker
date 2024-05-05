@@ -22,4 +22,8 @@
 // When SCREENSIZE is set to 2, it indicates that the screen size is 1920x1080.
 #define SCREENSIZE 1
 
+// This macro the speed of the heart rate graph.
+// bestvalues is 0,10,30
+#define DELAY 0
+
 #endif // SETTINGS_H
