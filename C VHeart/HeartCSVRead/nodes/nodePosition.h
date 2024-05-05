@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "../dataStructure.h"
 
 void saveToNodeLocationStruct(char *token, const int columnNo, const int rowNo);
