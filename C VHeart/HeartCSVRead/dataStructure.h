@@ -1,5 +1,8 @@
 #ifndef DATASTRUCTURE_H
 #define DATASTRUCTURE_H
+
+//^^--------------------------------------* Nodes *-----------------------------------------------^^//
+//**------------------------------------* Node Table *--------------------------------------------**//
 typedef struct Node
 {
     char node_name[10];
@@ -16,6 +19,15 @@ typedef struct Node
     int AV_node;
 
 } node_def;
+
+//**--------------------------------* Node Location Table *--------------------------------------**//
+typedef struct NodeLocation
+{
+    float x;
+    float y;
+} node_location;
+//^^--------------------------------------* Pathes *---------------------------------------------^^//
+//**----------------------------------* Node Path Table *----------------------------------------**//
 typedef struct Path
 {
     char path_name[10];
@@ -32,11 +44,7 @@ typedef struct Path
     float path_length;
     float path_slope;
 } node_path;
-typedef struct NodeLocation
-{
-    float x;
-    float y;
-} node_location;
+//**--------------------------------* Node Path Location Table *---------------------------------**//
 typedef struct NodePathLocation
 {
     float entry_x;
@@ -45,10 +53,20 @@ typedef struct NodePathLocation
     float exit_y;
 } node_path_location;
 
+//&&---------------------------------------* PACEMAKER *-----------------------------------------&&//
+
+//^^----------------------------------------* Probes *-------------------------------------------^^//
+//**--------------------------------------* Probe Table *----------------------------------------**//
 typedef struct Probe
 {
     char probe_name[10];
     int probe_bounds[10];
 } probe_def;
 
+//**--------------------------------------* Probe Position *--------------------------------------**//
+typedef struct ProbePosition
+{
+    float x;
+    float y;
+} probe_position;
 #endif
