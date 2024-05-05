@@ -20,7 +20,7 @@
 #define SCREEN_WIDTH 1500
 #define SCREEN_HEIGHT 900
 #else
-#define SCREEN_SCALE 1.8
+#define SCREEN_SCALE 1.7
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #endif
