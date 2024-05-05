@@ -44,4 +44,11 @@ typedef struct NodePathLocation
     float exit_x;
     float exit_y;
 } node_path_location;
+
+typedef struct Probe
+{
+    char probe_name[10];
+    int probe_bounds[10];
+} probe_def;
+
 #endif
