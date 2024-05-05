@@ -24,6 +24,6 @@
 
 // This macro the speed of the heart rate graph.
 // bestvalues is 0,10,30
-#define DELAY 0
+#define DELAY 10
 
 #endif // SETTINGS_H
