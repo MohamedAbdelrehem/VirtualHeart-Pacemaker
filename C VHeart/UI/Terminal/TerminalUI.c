@@ -9,6 +9,7 @@ extern int numberofnodes;
 extern int numberofnodesPathes;
 extern int numberofnodesLocation;
 extern int numberofprobes;
+extern int numberofprobesPosition;
 
 void printData()
 {
@@ -46,6 +47,9 @@ void printData()
             printProbeTable(&numberofprobes);
             break;
         case '6':
+            printProbePositionTable(&numberofprobesPosition);
+            break;
+        case 't':
             printf("Trest current: %d\n", nodeTable[0].TREST_current);
             break;
         case 'q':
@@ -103,6 +107,7 @@ void menu(void)
     printf("3. Print Node Location Table\n");
     printf("4. Print Node Path Location Table\n");
     printf("5. Print Probe Table\n");
-    printf("6. Print Trest current in real time\n");
+    printf("6. Print Probe Position Table\n");
+    printf("t. Print Trest current in real time\n");
     printf("q. Quit\n");
 }

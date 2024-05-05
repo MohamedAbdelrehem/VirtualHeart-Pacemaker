@@ -15,6 +15,7 @@
 #include "./HeartCSVRead/nodes/nodePosition.h"
 #include "./HeartCSVRead/nodes/nodePathLoaction.h"
 #include "./HeartCSVRead/probe/probeTable.h"
+#include "./HeartCSVRead/probe/probePosition.h"
 
 #if UION
 // include the SDL2 library
@@ -28,6 +29,7 @@ int numberofnodes = 0;
 int numberofnodesPathes = 0;
 int numberofnodesLocation = 0;
 int numberofprobes = 0;
+int numberofprobesPosition = 0;
 
 // to check if the window is initialized or not
 
@@ -39,6 +41,8 @@ int main(int argc, char *argv[])
   // save the data to the nodeTable and nodePathTable (ANA GAMMED :D)
   void (*saveToStructFPointer)(char *, const int, const int);
 
+  //^^--------------------------------------* Nodes *-----------------------------------------------^^//
+
   //**------------------------------------* Node Table *--------------------------------------------**//
   //~ Node Table Initialization
   saveToStructFPointer = &saveToNodeStruct;
@@ -46,14 +50,6 @@ int main(int argc, char *argv[])
                 &numberofnodes, saveToStructFPointer);
   //? print nodeTable to check
   //? printNodeTable(&numberofnodes);
-  //**----------------------------------* Node Path Table *----------------------------------------**//
-
-  //~ Path Table Initialization
-  saveToStructFPointer = &saveToNodePathStruct;
-  readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/path_table.csv",
-                &numberofnodesPathes, saveToStructFPointer);
-  //? print nodeTable to check
-  //? printNodePathTable(&numberofnodesPathes);
   //**--------------------------------* Node Location Table *--------------------------------------**//
 
   //~ node location table initialization
@@ -62,12 +58,26 @@ int main(int argc, char *argv[])
                 &numberofnodesLocation, saveToStructFPointer);
   //? print nodeTable to check
   //? printNodeLocationTable(&numberofnodesLocation);
+
+  //^^--------------------------------------* Pathes *---------------------------------------------^^//
+  //**----------------------------------* Node Path Table *----------------------------------------**//
+
+  //~ Path Table Initialization
+  saveToStructFPointer = &saveToNodePathStruct;
+  readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/path_table.csv",
+                &numberofnodesPathes, saveToStructFPointer);
+  //? print nodeTable to check
+  //? printNodePathTable(&numberofnodesPathes);
   //**--------------------------------* Node Path Location Table *---------------------------------**//
 
   //~node path table cordination initialization
   saveToNodePathLocationStruct(&numberofnodesPathes);
   //? print nodeTable to check
   //? printNodePathLocationTable(&numberofnodesPathes);
+
+  //&&---------------------------------------* PACEMAKER *-----------------------------------------&&//
+
+  //^^----------------------------------------* Probes *-------------------------------------------^^//
   //**--------------------------------------* Probe Table *----------------------------------------**//
 
   //~probe table initialization
@@ -75,9 +85,19 @@ int main(int argc, char *argv[])
   readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/probe_table.csv",
                 &numberofprobes, saveToStructFPointer);
 
-  // printf("number of probes: %d\n", numberofprobes);
   //? print nodeTable to check
-  printProbeTable(&numberofprobes);
+  //?printProbeTable(&numberofprobes);
+
+  //**--------------------------------------* Probe Position *--------------------------------------**//
+
+  //~probe position initialization
+  saveToStructFPointer = &saveToProbePositionStruct;
+  readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/probe_pos.csv",
+                &numberofprobesPosition, saveToStructFPointer);
+
+  printf("Number of Probes: %d\n", numberofprobesPosition);
+  //? print nodeTable to check
+  //? printProbePositionTable(&numberofprobesPosition);
 
   //**-------------------------------------------* UI *----------------------------------------------**//
 #if UION

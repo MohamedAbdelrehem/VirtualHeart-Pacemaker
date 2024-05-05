@@ -23,11 +23,11 @@ void printProbePositionTable(const int *const numberofprobes)
 {
     printf("\n\nProbe Position Table\n");
     printf("--------------------------------------------------\n");
-    printf("Probe Name\tX\tY\n");
+    printf("X\tY\n");
     printf("--------------------------------------------------\n");
     for (int i = 0; i < *numberofprobes; i++)
     {
-        printf("%d\t\t%.2f\t%.2f\n", i + 1, probePositionTable[i].x, probePositionTable[i].y);
+        printf("%.2f\t%.2f\n", probePositionTable[i].x, probePositionTable[i].y);
     }
     printf("--------------------------------------------------\n");
 }
