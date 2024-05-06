@@ -56,6 +56,16 @@ typedef struct NodePathLocation
 //&&---------------------------------------* PACEMAKER *-----------------------------------------&&//
 
 //^^----------------------------------------* Probes *-------------------------------------------^^//
+//**---------------------------------* Pacemaker Parameters *------------------------------------**//
+typedef struct PacemakerParameters
+{
+    char name[10];
+    float min;
+    float max;
+    float value;
+    float step;
+} pacemaker_parameters;
+
 //**--------------------------------------* Probe Table *----------------------------------------**//
 typedef struct Probe
 {
