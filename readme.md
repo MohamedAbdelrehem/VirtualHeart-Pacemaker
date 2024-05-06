@@ -2,6 +2,15 @@
 
 The project consists of two parts. The first part is converting MATLAB files to CSV files. The second part is a heart model and pacemaker that can be run with or without a user interface.
 
+# Screenshots
+
+## 1- Terminal-based UI | 2- Graphical UI
+
+<div style="display: flex;">
+    <img src="./0-Assets/SDLUI5.gif" alt="Heart" style="width: 50%;">
+    <img src="./0-Assets/Terminal.gif" alt="Terminal" style="width: 50%;">
+</div>
+
 ## 1. MATLAB to CSV
 
 The MATLAB to CSV converter is a MATLAB script that converts MAT files to CSV files. The MAT files contain EGM table, node position, node table, pace parameter, path table, probe position, and probe table data. The CSV files are named as egm_table.csv, node_pos.csv, node_table.csv, pace_para.csv, path_table.csv, probe_pos.csv, and probe_table.csv, respectively. The MAT files used for this project is EP_AVNRT.mat. but run perfectly with other cases like AFlutter.mat and Wenckbach.mat.
@@ -63,16 +72,6 @@ link: [check for SDL UI only](#for-SDL-UI-only)
   ```bash
   make runUI
   ```
-
-# Screenshots
-
-## 1. Graphical UI
-
-![Heart](./0-Assets/SDLUI5.gif)
-
-## 2. Terminal-based UI
-
-![Terminal](./0-Assets/Terminal.gif)
 
 # File tree
 
