@@ -68,7 +68,7 @@ link: [check for SDL UI only](#for-SDL-UI-only)
 
 ## 1. Graphical UI
 
-![Heart](./0-Assets/SDLUI.gif)
+![Heart](./0-Assets/SDLUI5.gif)
 
 ## 2. Terminal-based UI
 

@@ -38,15 +38,16 @@ int initializeWindow(void)
         return FALSE;
     }
 
-    //~Create a window with (name: Virtual Heart,window position: center, width: 800, height: 600, flags: 0)
+    //~Create a window with (name: Virtual Heart,window position: center, width: SCREEN_WIDTH, height: SCREEN_HEIGHT, flags: 0)
     window = SDL_CreateWindow("Virtual Heart", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
     if (!window)
     {
         fprintf(stderr, "Error creating window: %s\n", SDL_GetError());
         return FALSE;
     }
-    //~ Create a renderer for the window (window to attach the renderer to, display index: -1(default), flags: (0) test:SDL_RENDERER_ACCELERATED)
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    //~ Create a renderer for the window (window to attach the renderer to, display index: 5, flags: (0) test:SDL_RENDERER_ACCELERATED)
+    //! rendering driver index 5 is the best for the application
+    renderer = SDL_CreateRenderer(window, 5, 0);
     if (!renderer)
     {
         fprintf(stderr, "Error creating renderer: %s\n", SDL_GetError());
@@ -174,8 +175,9 @@ void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
  */
 void addCircleToScreen(float x, float y, int radius, int ColorNumber)
 {
+    //* for rendering driver -1
     // every 20 circles it renders the screen
-    static int counter = 0;
+    // static int counter = 0;
 
     // set the color of the circle based on the ColorNumber % 3 to get 3 colors only
     switch (ColorNumber)
@@ -206,12 +208,13 @@ void addCircleToScreen(float x, float y, int radius, int ColorNumber)
         }
     }
 
-    counter++;
-    if (counter == 20)
-    {
-        SDL_RenderPresent(renderer);
-        counter = 0;
-    }
+    //* for rendering driver -1
+    // counter++;
+    // if (counter == 10)
+    // {
+    //     SDL_RenderPresent(renderer);
+    //     counter = 0;
+    // }
 }
 
 /**
