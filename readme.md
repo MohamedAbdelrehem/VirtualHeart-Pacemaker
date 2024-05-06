@@ -2,11 +2,16 @@
 
 The project consists of two parts. The first part is converting MATLAB files to CSV files. The second part is a heart model and pacemaker that can be run with or without a user interface.
 
-# Screenshots
 
-| Terminal-based UI                                | Graphical UI                                   |
-| ------------------------------------------------ | ---------------------------------------------- |
-| <img src="./0-Assets/Terminal.gif" width="400"/> | <img src="./0-Assets/SDLUI5.gif" width="400"/> |
+## Graphical UI
+<center>
+<img src="./0-Assets/SDLUI5.gif" width="70%"/> 
+</center>
+
+## Terminal-based UI
+<center>
+<img src="./0-Assets/Terminal.gif" width="70%"/>
+</center>
 
 ## 1. MATLAB to CSV
 
