@@ -29,7 +29,7 @@ void saveToProbeStruct(char *token, const int columnNo, const int rowNo)
             ptr = strtok(token, ",");
             while (ptr != NULL)
             {
-                probeTable[rowNo].probe_bounds[i] = atoi(ptr);
+                probeTable[rowNo].corresponding_path[i] = atoi(ptr);
                 ptr = strtok(NULL, ",");
                 i++;
             }
@@ -37,15 +37,15 @@ void saveToProbeStruct(char *token, const int columnNo, const int rowNo)
             // Fill remaining elements with -1
             for (; i < 10; i++)
             {
-                probeTable[rowNo].probe_bounds[i] = -1;
+                probeTable[rowNo].corresponding_path[i] = -1;
             }
         }
         else
         {
-            probeTable[rowNo].probe_bounds[0] = atoi(token);
+            probeTable[rowNo].corresponding_path[0] = atoi(token);
             for (int i = 1; i < 10; i++)
             {
-                probeTable[rowNo].probe_bounds[i] = -1;
+                probeTable[rowNo].corresponding_path[i] = -1;
             }
         }
         break;
@@ -63,10 +63,10 @@ void printProbeTable(const int *const numberofprobes)
         printf("y: [");
         for (int j = 0; j < 10; j++)
         {
-            if (probeTable[i].probe_bounds[j] != -1)
+            if (probeTable[i].corresponding_path[j] != -1)
             {
-                printf("%d", probeTable[i].probe_bounds[j]);
-                if (j < 9 && probeTable[i].probe_bounds[j + 1] != -1)
+                printf("%d", probeTable[i].corresponding_path[j]);
+                if (j < 9 && probeTable[i].corresponding_path[j + 1] != -1)
                 {
                     printf(", ");
                 }
