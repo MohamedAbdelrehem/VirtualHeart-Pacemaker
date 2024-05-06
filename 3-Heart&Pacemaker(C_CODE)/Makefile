@@ -7,7 +7,8 @@ CFLAGS = -IC:\SDL2\include -LC:\SDL2\lib -w -Wl,-subsystem,windows -lmingw32 -lS
 # Files
 HeartModelFiles = ./HeartModel/heartModel.c ./HeartModel/nodeAutomaton.c ./HeartModel/pathAutomaton.c
 
-probeFiles = ./HeartCSVRead/probe/probeTable.c ./HeartCSVRead/probe/probePosition.c
+pacemakerFiles = ./HeartCSVRead/probe/probeTable.c ./HeartCSVRead/probe/probePosition.c ./HeartCSVRead/probe/pacemakerParameters.c
+
 
 MainFiles = ./main.c ./HeartCSVRead/matlabRead/matlabRead.c  ./HeartCSVRead/nodes/nodeTable.c ./HeartCSVRead/nodes/nodePathLocatin.c ./HeartCSVRead/nodes/nodePath.c ./HeartCSVRead/nodes/nodePosition.c
 
@@ -19,11 +20,11 @@ TerminalFiles = ./UI/Terminal/TerminalUI.c
 
 # Targets
 buildUI: 
-	$(CC)  $(MainFiles) $(SDLFiles) $(HeartModelFiles) $(probeFiles) $(CFLAGS) -o HeartUI
+	$(CC)  $(MainFiles) $(SDLFiles) $(HeartModelFiles) $(pacemakerFiles) $(CFLAGS) -o HeartUI
 	make runUI
 
 buildNoUI: 
-	$(CC) $(MainFiles) $(TerminalFiles) $(HeartModelFiles) $(probeFiles) -o HeartNoUI
+	$(CC) $(MainFiles) $(TerminalFiles) $(HeartModelFiles) $(pacemakerFiles) -o HeartNoUI
 	make runNoUI
 
 runUI:
