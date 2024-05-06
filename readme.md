@@ -1,5 +1,11 @@
-# Heart & Pacemaker
-
+```
+ __     ___      _               _   _   _                 _      ___     ____                                _             
+ \ \   / (_)_ __| |_ _   _  __ _| | | | | | ___  __ _ _ __| |_   ( _ )   |  _ \ __ _  ___ ___ _ __ ___   __ _| | _____ _ __ 
+  \ \ / /| | '__| __| | | |/ _` | | | |_| |/ _ \/ _` | '__| __|  / _ \/\ | |_) / _` |/ __/ _ \ '_ ` _ \ / _` | |/ / _ \ '__|
+   \ V / | | |  | |_| |_| | (_| | | |  _  |  __/ (_| | |  | |_  | (_>  < |  __/ (_| | (_|  __/ | | | | | (_| |   <  __/ |   
+    \_/  |_|_|   \__|\__,_|\__,_|_| |_| |_|\___|\__,_|_|   \__|  \___/\/ |_|   \__,_|\___\___|_| |_| |_|\__,_|_|\_\___|_|   
+```                                                                                                                            
+# Virtual Heart & Pacemaker
 ### The project consists of two parts. The first part is converting MATLAB files to CSV files. The second part is a heart model and pacemaker that can be run with or without a user interface.
 
 # 🖼️ Screenshots
