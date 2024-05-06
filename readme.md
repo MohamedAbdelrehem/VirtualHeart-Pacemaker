@@ -4,9 +4,9 @@ The project consists of two parts. The first part is converting MATLAB files to 
 
 # Screenshots
 
-| Graphical UI                    | Terminal-based UI                    |
-| ------------------------------- | ------------------------------------ |
-| ![Heart](./0-Assets/SDLUI5.gif) | ![Terminal](./0-Assets/Terminal.gif) |
+| Terminal-based UI                                | Graphical UI                                   |
+| ------------------------------------------------ | ---------------------------------------------- |
+| <img src="./0-Assets/Terminal.gif" width="400"/> | <img src="./0-Assets/SDLUI5.gif" width="400"/> |
 
 ## 1. MATLAB to CSV
 
