@@ -12,6 +12,9 @@ SDL_Surface *imageHeart = NULL;
 SDL_Texture *image_texture = NULL;
 TTF_Font *font = NULL;
 
+int simulationSpeed = DELAY;
+bool showProbe = false;
+
 int isWindowInitialized = FALSE;
 /**
  * @brief Initialize the window with the name Virtual Heart, position center, width from #define, height from #define, flags 0
@@ -81,6 +84,49 @@ void ProcessInput(void)
         {
             isWindowInitialized = FALSE;
         }
+        if (event.key.keysym.sym == SDLK_UP)
+        {
+            simulationSpeed -= 5;
+            if (simulationSpeed < 0)
+            {
+                simulationSpeed = 0;
+            }
+        }
+        if (event.key.keysym.sym == SDLK_DOWN)
+        {
+            simulationSpeed += 5;
+            if (simulationSpeed > 100)
+            {
+                simulationSpeed = 100;
+            }
+        }
+        if (event.key.keysym.sym == SDLK_p)
+        {
+            showProbe = !showProbe;
+            // clear the screen
+            SDL_RenderClear(renderer);
+            // render the background image
+            // renderHeartImage();
+            // add the UI elements
+            initializeUIElements();
+        }
+        // pause the simulation
+        if (event.key.keysym.sym == SDLK_SPACE)
+        {
+            int pause = 1;
+            while (pause)
+            {
+                SDL_PollEvent(&event);
+                if (event.type == SDL_KEYDOWN)
+                {
+                    if (event.key.keysym.sym == SDLK_SPACE)
+                    {
+                        pause = 0;
+                    }
+                }
+            }
+        }
+
         break;
     default:
         break;
@@ -191,6 +237,10 @@ void addCircleToScreen(float x, float y, int radius, int ColorNumber)
     case 3:
         SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
         break;
+
+    case 4:
+        SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+        break;
     default:
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     }
@@ -244,6 +294,10 @@ void mainUI(void)
     extern node_path nodePathtable[100];
     extern int numberofnodesPathes;
 
+    // use the probe position table to draw the pacemaker probes
+    extern probe_position probePositionTable[100];
+    extern int numberofprobes;
+
     //& run heart simulation before the UI for counter time
     int counter = 0;
     while (counter < 680)
@@ -274,13 +328,21 @@ void mainUI(void)
             addCircleToScreen(CenterX + nodeLocationTable[i].x * SCREEN_SCALE, (CenterY + -1 * (nodeLocationTable[i].y - imageHeart->h) * SCREEN_SCALE), 5 * SCREEN_SCALE, nodeTable[i].node_state_index);
         }
 
+        // go throw pace maker probes and add circle to the screen
+        if (showProbe)
+        {
+            for (int i = 0; i < numberofprobes; i++)
+            {
+                addCircleToScreen(CenterX + probePositionTable[i].x * SCREEN_SCALE, (CenterY + -1 * (probePositionTable[i].y - imageHeart->h) * SCREEN_SCALE), 4 * SCREEN_SCALE, 4);
+            }
+        }
         // render the screen
         SDL_RenderPresent(renderer);
 
         heart_model(nodeTable, numberofnodes, nodePathtable, numberofnodesPathes);
 
         // delay
-        SDL_Delay(DELAY);
+        SDL_Delay(simulationSpeed);
     }
 
     destroyWindow();

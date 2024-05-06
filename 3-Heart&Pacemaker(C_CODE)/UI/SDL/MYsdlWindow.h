@@ -1,16 +1,25 @@
 #ifndef SDL_WINDOW_H
 #define SDL_WINDOW_H
 
+#include <stdio.h>
 // SDL for graphics
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_surface.h>
-
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL2_gfxPrimitives.h> // Include SDL_gfx library header for advanced shapes
+
+// all the necessary headers
+#include "./../../HeartCSVRead/constants.h"
+#include "./../../HeartCSVRead/dataStructure.h" // include the structs file the node and path structs
 #include "./../../Settings.h"
+
+// heart model
+#include "./../../HeartModel/heartModel.h"
+
+// screen size
 #if SCREENSIZE == 0
 #define SCREEN_SCALE 1
 #define SCREEN_WIDTH 1024
@@ -24,13 +33,12 @@
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #endif
+
+// Assets
 #define HEART_IMAGE_PATH "/assets/images/EP.JPG"
 #define FONT_PATH0 "/assets/fonts/Arial.ttf"
 #define FONT_PATH1 "/assets/fonts/Atop-R99O3.ttf"
 #define FONT_PATH2 "/assets/fonts/LoveDays-2v7Oe.ttf"
-
-// heart model
-#include "./../../HeartModel/heartModel.h"
 
 // calculate center for image from its width and height
 #define CENTER_X(IMAGE_WIDTH, SCREEN_WIDTH) ((SCREEN_WIDTH - IMAGE_WIDTH) / 2)
