@@ -2,7 +2,7 @@
 # Compiler
 CC = gcc
 
-CFLAGS = -IC:\SDL2\include -LC:\SDL2\lib -w -Wl,-subsystem,windows -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+CFLAGS = -IC:\SDL2\include -LC:\SDL2\lib -w -Wl,-subsystem,windows -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf  -lSDL2_gfx
 
 # Files
 HeartModelFiles = ./HeartModel/heartModel.c ./HeartModel/nodeAutomaton.c ./HeartModel/pathAutomaton.c
