@@ -22,7 +22,7 @@
 // screen size
 #if SCREENSIZE == 0
 #define SCREEN_SCALE 1
-#define SCREEN_WIDTH 1024
+#define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 720
 #elif SCREENSIZE == 1
 #define SCREEN_SCALE 1.6
@@ -38,7 +38,7 @@
 #define HEART_IMAGE_PATH "/assets/images/EP.JPG"
 #define FONT_PATH0 "/assets/fonts/Arial.ttf"
 #define FONT_PATH1 "/assets/fonts/Atop-R99O3.ttf"
-#define FONT_PATH2 "/assets/fonts/LoveDays-2v7Oe.ttf"
+#define FONT_PATH2 "/assets/fonts/Nasa21-l23X.ttf"
 
 // calculate center for image from its width and height
 #define CENTER_X(IMAGE_WIDTH, SCREEN_WIDTH) ((SCREEN_WIDTH - IMAGE_WIDTH) / 2)
@@ -55,5 +55,7 @@ void mainUI(void);
 void initializeUIElements(void);
 
 void addLineToScreen(float startX, float startY, float endX, float endY, int ColorNumber, int thickness);
+
+void LegendsAndInstructions(void);
 
 #endif // SDL_WINDOW_H

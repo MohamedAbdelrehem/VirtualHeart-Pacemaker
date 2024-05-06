@@ -9,11 +9,13 @@ HeartModelFiles = ./HeartModel/heartModel.c ./HeartModel/nodeAutomaton.c ./Heart
 
 pacemakerFiles = ./HeartCSVRead/probe/probeTable.c ./HeartCSVRead/probe/probePosition.c ./HeartCSVRead/probe/pacemakerParameters.c
 
-
 MainFiles = ./main.c ./HeartCSVRead/matlabRead/matlabRead.c  ./HeartCSVRead/nodes/nodeTable.c ./HeartCSVRead/nodes/nodePathLocatin.c ./HeartCSVRead/nodes/nodePath.c ./HeartCSVRead/nodes/nodePosition.c
 
-SDLFiles = ./UI/SDL/MYsdlWindow.c
+SDLFiles = ./UI/SDL/MYsdlWindow.c 
 
+# not used yet
+# TODO: Clean up
+#  ./UI/SDL/sdlInitialization.c  ./UI/SDL/MySDLGraphics.c ./UI/SDL/UIElements.c 
 
 
 TerminalFiles = ./UI/Terminal/TerminalUI.c

@@ -124,6 +124,11 @@ void ProcessInput(void)
                         pause = 0;
                     }
                 }
+                if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
+                {
+                    isWindowInitialized = FALSE;
+                    pause = 0;
+                }
             }
         }
 
@@ -181,18 +186,37 @@ void initializeFont(void)
 
 void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
 {
+    SDL_Color color;
     //? get the path of the image from .exe file relative path to image in the assets folder
     char *executablePath = SDL_GetBasePath();
     switch (fontNumber)
     {
     case 1:
         font = TTF_OpenFont(strcat(executablePath, FONT_PATH1), size);
+        // color. = {32, 178, 170};
+        color.r = 32;
+        color.g = 178;
+        color.b = 170;
+        color.a = 255;
+
         break;
     case 2:
         font = TTF_OpenFont(strcat(executablePath, FONT_PATH2), size);
+        // font bold
+        TTF_SetFontStyle(font, TTF_STYLE_BOLD);
+        // color = {255, 0, 0};
+        color.r = 0;
+        color.g = 0;
+        color.b = 0;
+        color.a = 255;
         break;
     default:
         font = TTF_OpenFont(strcat(executablePath, FONT_PATH0), size);
+        // color = {32, 178, 170};
+        color.r = 32;
+        color.g = 178;
+        color.b = 170;
+        color.a = 255;
     }
 
     if (!font)
@@ -200,7 +224,6 @@ void addTextToScreen(char *text, int x, int y, int size, int fontNumber)
         fprintf(stderr, "Error opening font: %s\n", TTF_GetError());
         return;
     }
-    SDL_Color color = {32, 178, 170};
     SDL_Surface *surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dest = {x, y, surface->w, surface->h};
@@ -397,6 +420,61 @@ void initializeUIElements(void)
     addTextToScreen("Supervisor:", 50, SCREEN_HEIGHT - 128, 24, 1);
     addTextToScreen("Dr. Ahmed Mahmoud", 80, SCREEN_HEIGHT - 98, 25, 0);
 
+    // legends and instructions
+    LegendsAndInstructions();
+
     // Present the renderer
     SDL_RenderPresent(renderer);
+}
+
+void LegendsAndInstructions(void)
+{
+
+    // legend with all data and colors in rectangle at top right
+    SDL_Rect legendRect = {SCREEN_WIDTH - 200, 50, 180, 250};
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(renderer, &legendRect);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderDrawRect(renderer, &legendRect);
+
+    // Add the legend title
+    addTextToScreen("Legend:", legendRect.x + 10, 60, 20, 1);
+
+    // Add the legend items
+    addTextToScreen("Node State1", legendRect.x + 30, 100, 15, 2);
+    addCircleToScreen(legendRect.x + 15, 110, SCREEN_SCALE * 3, 1);
+    addTextToScreen("Node State2", legendRect.x + 30, 120, 15, 2);
+    addCircleToScreen(legendRect.x + 15, 130, SCREEN_SCALE * 3, 2);
+    addTextToScreen("Node State3", legendRect.x + 30, 140, 15, 2);
+    addCircleToScreen(legendRect.x + 15, 150, SCREEN_SCALE * 3, 3);
+    addTextToScreen("Node State4", legendRect.x + 30, 160, 15, 2);
+    addCircleToScreen(legendRect.x + 15, 170, SCREEN_SCALE * 3, 4);
+    addTextToScreen("Probe", legendRect.x + 30, 180, 15, 2);
+    addCircleToScreen(legendRect.x + 15, 190, SCREEN_SCALE * 3, 5);
+    addTextToScreen("Path State1", legendRect.x + 30, 200, 15, 2);
+    addLineToScreen(legendRect.x + 10, 210, legendRect.x + 20, 210, 1, SCREEN_SCALE * 3);
+    addTextToScreen("Path State2", legendRect.x + 30, 220, 15, 2);
+    addLineToScreen(legendRect.x + 10, 230, legendRect.x + 20, 230, 2, SCREEN_SCALE * 3);
+    addTextToScreen("Path State3", legendRect.x + 30, 240, 15, 2);
+    addLineToScreen(legendRect.x + 10, 250, legendRect.x + 20, 250, 3, SCREEN_SCALE * 3);
+    addTextToScreen("Path State4", legendRect.x + 30, 260, 15, 2);
+    addLineToScreen(legendRect.x + 10, 270, legendRect.x + 20, 270, 4, SCREEN_SCALE * 3);
+
+    // key bindings instructions in rectangle below the legend
+    SDL_Rect keyBindingsRect = {SCREEN_WIDTH - 300, 320, 280, 170};
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(renderer, &keyBindingsRect);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderDrawRect(renderer, &keyBindingsRect);
+
+    // Add the key bindings title
+    addTextToScreen("Key Bindings:", keyBindingsRect.x + 10, 330, 20, 1);
+
+    // Add the key bindings items
+    addTextToScreen("- UP Arrow: Increase Speed", keyBindingsRect.x + 20, 370, 15, 2);
+    addTextToScreen("- DOWN Arrow: Decrease Speed", keyBindingsRect.x + 20, 390, 15, 2);
+    addTextToScreen("- P: Toggle Probe", keyBindingsRect.x + 20, 410, 15, 2);
+    addTextToScreen("- SPACE: Pause Simulation", keyBindingsRect.x + 20, 430, 15, 2);
+    addTextToScreen("- ESC: Exit", keyBindingsRect.x + 20, 450, 15, 2);
 }
