@@ -15,6 +15,7 @@
 #include "./../../HeartCSVRead/nodes/nodePathLoaction.h"
 #include "./../../HeartCSVRead/probe/probeTable.h"
 #include "./../../HeartCSVRead/probe/probePosition.h"
+#include "./../../HeartCSVRead/probe/pacemakerParameters.h"
 
 #include "./../../HeartModel/heartModel.h"
 #include "./../../HeartCSVRead/dataStructure.h"
