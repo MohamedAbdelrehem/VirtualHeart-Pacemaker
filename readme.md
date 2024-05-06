@@ -58,6 +58,7 @@
 │
 └───3-Heart&Pacemaker(C_CODE)
     │   HeartNoUI.exe
+    │   HeartUI.exe
     │   main.c
     │   Makefile
     │   Settings.h
@@ -90,6 +91,8 @@
     │   │       nodeTable.h
     │   │
     │   └───probe
+    │           pacemakerParameters.c
+    │           pacemakerParameters.h
     │           probePosition.c
     │           probePosition.h
     │           probeTable.c
