@@ -29,7 +29,7 @@ void saveToProbeStruct(char *token, const int columnNo, const int rowNo)
             ptr = strtok(token, ",");
             while (ptr != NULL)
             {
-                probeTable[rowNo].corresponding_path[i] = atoi(ptr);
+                probeTable[rowNo].corresponding_path[i] = atoi(ptr) - 1;
                 ptr = strtok(NULL, ",");
                 i++;
             }
@@ -42,7 +42,7 @@ void saveToProbeStruct(char *token, const int columnNo, const int rowNo)
         }
         else
         {
-            probeTable[rowNo].corresponding_path[0] = atoi(token);
+            probeTable[rowNo].corresponding_path[0] = atoi(token) - 1;
             for (int i = 1; i < 10; i++)
             {
                 probeTable[rowNo].corresponding_path[i] = -1;

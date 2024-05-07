@@ -1,14 +1,15 @@
 #include "./heartReactPace.h"
 
-void heart_react_pace(probe_def *probe_table, node_path *path_table, probe_position *probe_pos, node_location *node_pos, float probe_amp, int probe_table_size)
+void heart_react_pace(probe_def *probe_table, node_path *path_table, probe_position *probe_pos, node_location *node_pos, float *probe_amp, int probe_table_size)
 {
-    static float last_amp[probe_table_size];
+    // ? we used size 20 bec no dynamic array can be static
+    static float last_amp[20];
     static int count_entered = 0;
 
     if (count_entered == 0)
     {
 
-        memcpy(&last_amp, probe_amp, probe_table_size);
+        memcpy(last_amp, probe_amp, probe_table_size);
     }
     int count_size = 0;
     int pacing_ind[probe_table_size];

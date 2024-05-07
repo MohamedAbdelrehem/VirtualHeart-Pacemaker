@@ -1,10 +1,8 @@
 #include "./functionalSensing.h"
 
-//! why *
 float *functional_sensing(node_location *node_pos, path_def *path_table, probe_position *probe_pos, probe_def *probe_table, float probe_amp[], int probe_table_size)
 {
-
-    float local_theta = 15;
+    double local_theta = 15;
     double far_theta = 80;
     static float egm_data[probe_table_size];
     double wave_front[2][2];
@@ -63,7 +61,6 @@ float *functional_sensing(node_location *node_pos, path_def *path_table, probe_p
             switch (path_table[act_local[j]].path_state_index)
             {
             case 2:
-                wave_front = [ p1(1) + (p2(1) - p1(1)) * (def_timer - cur_timer) / def_timer, ... p2(2) + (p1(2) - p2(2)) * cur_timer / def_timer ];
                 cur_timer = path_table[act_local[j]].forward_timer_current;
                 def_timer = path_table[act_local[j]].forward_timer_default;
                 wave_front[0][0] = p1[0] + (p2[0] - p1[0]) * (def_timer - cur_timer) / def_timer;
@@ -101,7 +98,6 @@ float *functional_sensing(node_location *node_pos, path_def *path_table, probe_p
             }
             for (k = 0; k < count_size_3, k++)
             {
-                cur_dist = ((act_probe(2) - wave_front(k, 2)) ^ 2 + (act_probe(1) - wave_front(k, 1)) ^ 2) ^ .5;
                 cur_dist = pow(pow((act_probe[i].y - wave_front[k][2]), 2) + pow((act_probe[i].x - wave_front[k][1]), 2), 0.5);
                 ratio_def = gaussmf(cur_dist, local_theta, 0);
                 egm_data[i] = i + (ratio_def * path_table[act_local[j]].amplitude_factor);

@@ -115,7 +115,7 @@ void pacemaker_DDD(pacemaker_parameters *pace_para, bool A_get, bool V_get, int 
     switch (pace_para[4].State_index)
     {
     case 1:
-        if (pace_para[1].corresponding_output_signal == true || pace_para[e].corresponding_output_signal == true)
+        if (pace_para[1].corresponding_output_signal == true || pace_para[3].corresponding_output_signal == true)
         {
             pace_para[4].State_index = 2;
         }
