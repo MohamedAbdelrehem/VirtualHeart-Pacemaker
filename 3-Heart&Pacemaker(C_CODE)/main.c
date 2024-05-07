@@ -113,8 +113,6 @@ int main(int argc, char *argv[])
   saveToStructFPointer = &saveToProbePositionStruct;
   readMatlabCSV("./../2-MatlabToCSVOutput/EP_AVNRT/probe_pos.csv",
                 &numberofprobesPosition, saveToStructFPointer);
-
-  printf("Number of Probes: %d\n", numberofprobesPosition);
   //? print nodeTable to check
   //? printProbePositionTable(&numberofprobesPosition);
 
