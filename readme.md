@@ -24,6 +24,12 @@
 <img src="./0-Assets/Terminal.gif" width="70%"/>
 </center>
 
+# 3. Code Snaps 📸
+
+<center>
+<img src="./0-Assets/codeSnapshot.png" width="70%"/>
+</center>
+
 ## 1. MATLAB to CSV 📊
 
 The MATLAB to CSV converter is a MATLAB script that converts MAT files to CSV files. The MAT files contain EGM table, node position, node table, pace parameter, path table, probe position, and probe table data. The CSV files are named as egm_table.csv, node_pos.csv, node_table.csv, pace_para.csv, path_table.csv, probe_pos.csv, and probe_table.csv, respectively. The MAT files used for this project is EP_AVNRT.mat. but run perfectly with other cases like AFlutter.mat and Wenckbach.mat.
