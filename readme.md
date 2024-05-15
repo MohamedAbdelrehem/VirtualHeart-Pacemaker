@@ -15,7 +15,7 @@
 ## 1. Graphical UI 🎨
 
 <center>
-<img src="./0-Assets/SDLUI5.gif" width="70%"/> 
+<img src="./0-Assets/SDLUI5.gif" width="45%"/> <img src="./0-Assets/SDLUI5_2.gif" width="45%"/>
 </center>
 
 ## 2. Terminal-based UI 📟
@@ -213,9 +213,9 @@ link: [check for SDL UI only](#for-SDL-UI-only)
 
 # 🙌 Acknowledgements
 
-- Medical Cyber-Physical Systems (MedCPS) Lab at the University of Pennsylvania
-   thanks to the Medical Cyber-Physical Systems Lab at UPenn for their pioneering work in the field of medical device development and validation.
-   Their work integrates model-driven development and closed-loop validation to ensure robust and reliable medical device performance. For more information about their research and projects, visit the MedCPS Lab website: [https://mlab-upenn.github.io/medcps/index.html](https://mlab-upenn.github.io/medcps/index.html)
+### Medical Cyber-Physical Systems (MedCPS) Lab at the University of Pennsylvania
+
+-thanks to the Medical Cyber-Physical Systems Lab at UPenn for their pioneering work in the field of medical device development and validation.Their work integrates model-driven development and closed-loop validation to ensure robust and reliable medical device performance. For more information about their research and projects, visit the MedCPS Lab website: [https://mlab-upenn.github.io/medcps/index.html](https://mlab-upenn.github.io/medcps/index.html)
 
 # 🙏💛 Special Thanks to Dr. Ahmed Mahmoud
 
