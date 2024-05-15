@@ -215,11 +215,7 @@ link: [check for SDL UI only](#for-SDL-UI-only)
 
 ### Medical Cyber-Physical Systems (MedCPS) Lab at the University of Pennsylvania
 
-<<<<<<< HEAD
--thanks to the Medical Cyber-Physical Systems Lab at UPenn for their pioneering work in the field of medical device development and validation.Their work integrates model-driven development and closed-loop validation to ensure robust and reliable medical device performance. For more information about their research and projects, visit the MedCPS Lab website: [https://mlab-upenn.github.io/medcps/index.html](https://mlab-upenn.github.io/medcps/index.html)
-=======
 - thanks to the Medical Cyber-Physical Systems Lab at UPenn for their pioneering work in the field of medical device development and validation.Their work integrates model-driven development and closed-loop validation to ensure robust and reliable medical device performance. For more information about their research and projects, visit the MedCPS Lab website: [https://mlab-upenn.github.io/medcps/index.html](https://mlab-upenn.github.io/medcps/index.html)
->>>>>>> efad4a26ba172637afaf77e45ad115b009f7218b
 
 # 🙏💛 Special Thanks to Dr. Ahmed Mahmoud
 
