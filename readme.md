@@ -15,7 +15,8 @@
 ## 1. Graphical UI 🎨
 
 <center>
-<img src="./0-Assets/SDLUI5.gif" width="45%"/> <img src="./0-Assets/SDLUI5_2.gif" width="45%"/>
+<img src="./0-Assets/SDLUI5.gif" width="70%"/>
+ <img src="./0-Assets/SDLUI5_2.gif" width="70%"/>
 </center>
 
 ## 2. Terminal-based UI 📟
