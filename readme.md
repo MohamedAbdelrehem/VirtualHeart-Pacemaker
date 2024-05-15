@@ -210,3 +210,15 @@ link: [check for SDL UI only](#for-SDL-UI-only)
   - [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/) - SDL2_ttf is a library that allows you to use TrueType fonts in your SDL applications.
   - [SDL2_image](https://www.libsdl.org/projects/SDL_image/) - SDL2_image is an image file loading library.
   - [SDL2_gfx](http://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/) - SDL2_gfx is a library that provides graphics drawing primitives and other support functions.
+
+# 🙌 Acknowledgements
+
+- Medical Cyber-Physical Systems (MedCPS) Lab at the University of Pennsylvania
+   thanks to the Medical Cyber-Physical Systems Lab at UPenn for their pioneering work in the field of medical device development and validation.
+   Their work integrates model-driven development and closed-loop validation to ensure robust and reliable medical device performance. For more information about their research and projects, visit the MedCPS Lab website: [https://mlab-upenn.github.io/medcps/index.html](https://mlab-upenn.github.io/medcps/index.html)
+
+# 🙏💛 Special Thanks to Dr. Ahmed Mahmoud
+
+- We are incredibly grateful to Dr. Ahmed Mahmoud for his invaluable guidance, support, and mentorship throughout this project. His expertise and dedication were instrumental in our success.
+- [Dr. Ahmed Mahmoud's LinkedIn](https://www.linkedin.com/in/ahmedmmkms)
+- [Dr. Ahmed Mahmoud's ResearchGate](https://www.researchgate.net/profile/Ahmed-Moustafa-15)
