@@ -15,6 +15,7 @@ void node_automaton(node_def *node, int path_ind[], int size_path, int term_ind[
             (*node).TERP_current = (*node).TERP_default + round((random_fraction - 0.5) * 0 * (*node).TERP_default);
             for (int i = 0; i < size_path; i++)
             {
+                // entry node ==1, Exit node ==0
                 if (term_ind[i] == 1)
                 {
                     path[path_ind[i]].forward_timer_default = round((1 + (random_fraction - 0.5) * 0) * (path[path_ind[i]].path_length / path[path_ind[i]].forward_speed));

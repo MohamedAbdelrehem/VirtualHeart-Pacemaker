@@ -23,6 +23,7 @@ void heart_model(node_def *node_table, int size_node_table, node_path *path_tabl
     int count_j;
     bool temp_act[size_node_table];
 
+    // in MATLAB 1 line 🥲
     for (int i = 0; i < size_node_table; i++)
     {
 
@@ -54,6 +55,7 @@ void heart_model(node_def *node_table, int size_node_table, node_path *path_tabl
 
         temp_node[i] = node_table[i];
 
+        // update the node state
         node_automaton(&temp_node[i], path_ind, count_j, term_ind, temp_path_node);
 
         temp_act[i] = temp_node[i].activation;

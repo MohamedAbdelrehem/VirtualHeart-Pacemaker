@@ -86,7 +86,7 @@ void ProcessInput(void)
         }
         if (event.key.keysym.sym == SDLK_UP)
         {
-            simulationSpeed -= 5;
+            simulationSpeed -= 3;
             if (simulationSpeed < 0)
             {
                 simulationSpeed = 0;
@@ -94,11 +94,16 @@ void ProcessInput(void)
         }
         if (event.key.keysym.sym == SDLK_DOWN)
         {
-            simulationSpeed += 5;
-            if (simulationSpeed > 100)
+            simulationSpeed += 3;
+            if (simulationSpeed > 300)
             {
-                simulationSpeed = 100;
+                simulationSpeed = 300;
             }
+        }
+        // r for reset
+        if (event.key.keysym.sym == SDLK_r)
+        {
+            simulationSpeed = DELAY;
         }
         if (event.key.keysym.sym == SDLK_p)
         {
@@ -252,12 +257,15 @@ void addCircleToScreen(float x, float y, int radius, int ColorNumber)
     switch (ColorNumber)
     {
     case 1:
+        // g
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
         break;
     case 2:
+        // r
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         break;
     case 3:
+        // y
         SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
         break;
 
@@ -431,7 +439,7 @@ void LegendsAndInstructions(void)
 {
 
     // legend with all data and colors in rectangle at top right
-    SDL_Rect legendRect = {SCREEN_WIDTH - 200, 50, 180, 250};
+    SDL_Rect legendRect = {SCREEN_WIDTH - 200, 50, 180, 260};
 
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(renderer, &legendRect);
@@ -442,27 +450,28 @@ void LegendsAndInstructions(void)
     addTextToScreen("Legend:", legendRect.x + 10, 60, 20, 1);
 
     // Add the legend items
-    addTextToScreen("Node State1", legendRect.x + 30, 100, 15, 2);
+    addTextToScreen("Rest", legendRect.x + 30, 100, 15, 2);
     addCircleToScreen(legendRect.x + 15, 110, SCREEN_SCALE * 3, 1);
-    addTextToScreen("Node State2", legendRect.x + 30, 120, 15, 2);
+    addTextToScreen("ERP", legendRect.x + 30, 120, 15, 2);
     addCircleToScreen(legendRect.x + 15, 130, SCREEN_SCALE * 3, 2);
-    addTextToScreen("Node State3", legendRect.x + 30, 140, 15, 2);
+    addTextToScreen("RRP", legendRect.x + 30, 140, 15, 2);
     addCircleToScreen(legendRect.x + 15, 150, SCREEN_SCALE * 3, 3);
-    addTextToScreen("Node State4", legendRect.x + 30, 160, 15, 2);
+    addTextToScreen("probe", legendRect.x + 30, 160, 15, 2);
     addCircleToScreen(legendRect.x + 15, 170, SCREEN_SCALE * 3, 4);
-    addTextToScreen("Probe", legendRect.x + 30, 180, 15, 2);
-    addCircleToScreen(legendRect.x + 15, 190, SCREEN_SCALE * 3, 5);
-    addTextToScreen("Path State1", legendRect.x + 30, 200, 15, 2);
-    addLineToScreen(legendRect.x + 10, 210, legendRect.x + 20, 210, 1, SCREEN_SCALE * 3);
-    addTextToScreen("Path State2", legendRect.x + 30, 220, 15, 2);
-    addLineToScreen(legendRect.x + 10, 230, legendRect.x + 20, 230, 2, SCREEN_SCALE * 3);
-    addTextToScreen("Path State3", legendRect.x + 30, 240, 15, 2);
-    addLineToScreen(legendRect.x + 10, 250, legendRect.x + 20, 250, 3, SCREEN_SCALE * 3);
-    addTextToScreen("Path State4", legendRect.x + 30, 260, 15, 2);
-    addLineToScreen(legendRect.x + 10, 270, legendRect.x + 20, 270, 4, SCREEN_SCALE * 3);
+
+    addTextToScreen("Idle", legendRect.x + 30, 180, 15, 2);
+    addLineToScreen(legendRect.x + 10, 190, legendRect.x + 20, 190, 1, SCREEN_SCALE * 3);
+    addTextToScreen("Antegrade", legendRect.x + 30, 200, 15, 2);
+    addLineToScreen(legendRect.x + 10, 210, legendRect.x + 20, 210, 2, SCREEN_SCALE * 3);
+    addTextToScreen("Retrograde", legendRect.x + 30, 220, 15, 2);
+    addLineToScreen(legendRect.x + 10, 230, legendRect.x + 20, 230, 3, SCREEN_SCALE * 3);
+    addTextToScreen("Conflict", legendRect.x + 30, 240, 15, 2);
+    addLineToScreen(legendRect.x + 10, 250, legendRect.x + 20, 250, 4, SCREEN_SCALE * 3);
+    addTextToScreen("Double", legendRect.x + 30, 260, 15, 2);
+    addLineToScreen(legendRect.x + 10, 270, legendRect.x + 20, 270, 5, SCREEN_SCALE * 3);
 
     // key bindings instructions in rectangle below the legend
-    SDL_Rect keyBindingsRect = {SCREEN_WIDTH - 300, 320, 280, 170};
+    SDL_Rect keyBindingsRect = {SCREEN_WIDTH - 300, 320, 280, 180};
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(renderer, &keyBindingsRect);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -474,7 +483,9 @@ void LegendsAndInstructions(void)
     // Add the key bindings items
     addTextToScreen("- UP Arrow: Increase Speed", keyBindingsRect.x + 20, 370, 15, 2);
     addTextToScreen("- DOWN Arrow: Decrease Speed", keyBindingsRect.x + 20, 390, 15, 2);
-    addTextToScreen("- P: Toggle Probe", keyBindingsRect.x + 20, 410, 15, 2);
-    addTextToScreen("- SPACE: Pause Simulation", keyBindingsRect.x + 20, 430, 15, 2);
-    addTextToScreen("- ESC: Exit", keyBindingsRect.x + 20, 450, 15, 2);
+    addTextToScreen("- R: Reset Speed", keyBindingsRect.x + 20, 410, 15, 2);
+
+    addTextToScreen("- P: Toggle Probe", keyBindingsRect.x + 20, 430, 15, 2);
+    addTextToScreen("- SPACE: Pause Simulation", keyBindingsRect.x + 20, 450, 15, 2);
+    addTextToScreen("- ESC: Exit", keyBindingsRect.x + 20, 470, 15, 2);
 }
